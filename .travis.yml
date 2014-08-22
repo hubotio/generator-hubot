@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - '0.10'
+before_install:
+  - currentfolder=${PWD##*/}
+  - if [ "$currentfolder" != 'generator-hubot' ]; then cd .. && eval "mv $currentfolder generator-hubot" && cd generator-hubot; fi
+

@@ -75,8 +75,9 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
   writing: {
     app: function () {
-      this.dest.mkdir('app');
-      this.dest.mkdir('app/templates');
+      this.mkdir('bin');
+      this.copy('bin/hubot', 'bin/hubot');
+      this.copy('bin/hubot.cmd', 'bin/hubot.cmd');
 
       this.template('_package.json', 'package.json');
     },

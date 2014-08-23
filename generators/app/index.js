@@ -28,39 +28,49 @@ var HubotGenerator = yeoman.generators.Base.extend({
     this.pkg = require('../../package.json');
   },
 
-  prompting: function () {
-    var done = this.async();
-    var botName = this._.slugify(this.appname);
-    var userName = this.user.git.username;
-    var userEmail = this.user.git.email;
+  prompting: {
+    askFor: function () {
+      var done = this.async();
+      var userName = this.user.git.name();
+      var userEmail = this.user.git.email();
 
-    // Have Yeoman greet the user.
-    this.log(hubotSay());
+      var prompts = [{
+        name: 'botOwner',
+        message: 'Owner',
+        default: userName+' <'+userEmail+'>'
+      }];
 
+      this.log(hubotSay());
 
-    var prompts = [{
-      name: 'botName',
-      message: 'Bot name',
-      default: botName
+      this.prompt(prompts, function (props) {
+        this.botOwner = props.botOwner;
+
+        done();
+      }.bind(this));
     },
-    {
-      name: 'botDescription',
-      message: 'Description',
-      default: 'A simple helpful robot for your Company'
-    },
-    {
-      name: 'botOwner',
-      message: 'Owner',
-      default: userName+' <'+userEmail+'>'
-    }];
 
-    this.prompt(prompts, function (props) {
-      this.botName = props.botName;
-      this.botDescription = props.botDescription;
-      this.botOwner = props.botOwner;
+    askForBotNameAndDescription: function() {
+      var done = this.async();
+      var botName = this._.slugify(this.appname);
 
-      done();
-    }.bind(this));
+      var prompts = [{
+        name: 'botName',
+        message: 'Bot name',
+        default: botName
+      },
+      {
+        name: 'botDescription',
+        message: 'Description',
+        default: 'A simple helpful robot for your Company'
+      }];
+
+      this.prompt(prompts, function (props) {
+        this.botName = props.botName;
+        this.botDescription = props.botDescription;
+
+        done();
+      }.bind(this));
+    }
   },
 
   writing: {

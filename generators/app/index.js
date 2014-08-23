@@ -3,6 +3,25 @@ var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
+var chalk = require('chalk');
+
+var hubotSay = function() {
+  return  '                     _____________________________  ' + "\n" +
+          ' _____              /                             \\ ' + "\n" +
+          ' \\    \\             | Preparing to fashion new bot |' + "\n" +
+          ' |    |    '+chalk.yellow('_____')+'    |       in my likeness...      |' + "\n" +
+          ' |__'+chalk.cyan('\\\\')+'|   '+chalk.yellow('/')+chalk.cyan('_____')+chalk.yellow('\\')+'   \\                             / ' + "\n" +
+          '   '+chalk.cyan('|//') + chalk.yellow('+  |')+chalk.cyan('[^_/\\_]')+chalk.yellow('|')+'   /----------------------------  ' + "\n" +
+          '  '+chalk.yellow('|   | _|___')+'@@'+chalk.yellow('__|__')+'                                ' + "\n" +
+          '  '+chalk.yellow('+===+/  ///     ')+chalk.cyan('\\_\\')+'                               ' + "\n" +
+          '   '+chalk.cyan('| |_')+chalk.yellow('\\ /// HUBOT/')+chalk.cyan('\\\\')+'                             ' + "\n" +
+          '   '+chalk.cyan('|___/')+chalk.yellow('\\//      /')+chalk.cyan('  \\\\')+'                            ' + "\n" +
+          '         '+chalk.yellow('\\      /   +---+')+'                            ' + "\n" +
+          '          '+chalk.yellow('\\____/    |   |')+'                            ' + "\n" +
+          '           '+chalk.cyan('| //|')+'    '+chalk.yellow('+===+')+'                            ' + "\n" +
+          '            '+chalk.cyan('\\//')+'      |xx|                            ' +
+          "\n";
+};
 
 var HubotGenerator = yeoman.generators.Base.extend({
   initializing: function () {
@@ -13,9 +32,8 @@ var HubotGenerator = yeoman.generators.Base.extend({
     var done = this.async();
 
     // Have Yeoman greet the user.
-    this.log(yosay(
-      'Welcome to the astonishing Hubot generator!'
-    ));
+    this.log(hubotSay());
+
 
     var prompts = [{
       type: 'confirm',

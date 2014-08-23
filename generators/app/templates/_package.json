@@ -1,5 +1,17 @@
 {
-  "name": "package",
+  "name": "<%= botName %>",
   "version": "0.0.0",
-  "dependencies": {}
+  "private": true,
+
+  "author": "<%= botOwner %>",
+
+  "description": "<%= botDescription %>",
+
+  "dependencies": {
+  },
+
+  "engines": {
+    "node": ">= 0.8.x",
+    "npm":  ">= 1.1.x"
+  }
 }

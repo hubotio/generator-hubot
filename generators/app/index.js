@@ -78,7 +78,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
       this.dest.mkdir('app');
       this.dest.mkdir('app/templates');
 
-      this.src.copy('_package.json', 'package.json');
+      this.template('_package.json', 'package.json');
     },
 
     projectfiles: function () {
@@ -88,7 +88,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
   },
 
   end: function () {
-    this.installDependencies();
+    this.npmInstall(['hubot', 'hubot-scripts'], {'save': true});
   }
 });
 

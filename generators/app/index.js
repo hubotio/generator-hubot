@@ -79,12 +79,18 @@ var HubotGenerator = yeoman.generators.Base.extend({
       this.copy('bin/hubot', 'bin/hubot');
       this.copy('bin/hubot.cmd', 'bin/hubot.cmd');
 
+      this.copy('Procfile', 'Procfile');
+      this.copy('README.md', 'README.md');
+      this.copy('external-scripts.json', 'external-scripts.json');
+      this.copy('hubot-scripts.json', 'hubot-scripts.json');
+
+      this.copy('gitignore', '.gitignore');
       this.template('_package.json', 'package.json');
     },
 
     projectfiles: function () {
-      this.src.copy('editorconfig', '.editorconfig');
-      this.src.copy('jshintrc', '.jshintrc');
+      this.copy('editorconfig', '.editorconfig');
+      this.copy('jshintrc', '.jshintrc');
     }
   },
 

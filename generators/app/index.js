@@ -4,6 +4,8 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var chalk = require('chalk');
+var npmName = require('npm-name');
+
 
 var hubotSay = function() {
   return  '                     _____________________________  ' + "\n" +
@@ -70,6 +72,40 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
         done();
       }.bind(this));
+    },
+
+    askForBotAdapter: function() {
+      var done = this.async();
+      var prompts = [{
+        name: 'botAdapter',
+        message: 'Bot adapter',
+        default: 'campfire',
+        validate: function (botAdapter) {
+          var done = this.async();
+
+          if (botAdapter == 'campfire') {
+            done(true);
+            return
+          }
+
+          var name = 'hubot-' + botAdapter;
+          npmName(name, function (err, available) {
+            console.log("got back " + available);
+            if (available) {
+              done("Can't that adapter on NPM, try again?");
+              return;
+            }
+
+            done(true);
+          });
+        }
+      }];
+
+      this.prompt(prompts, function (props) {
+        this.botAdapter = props.botAdapter;
+
+        done();
+      }.bind(this));
     }
   },
 
@@ -79,7 +115,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
       this.copy('bin/hubot', 'bin/hubot');
       this.copy('bin/hubot.cmd', 'bin/hubot.cmd');
 
-      this.copy('Procfile', 'Procfile');
+      this.template('Procfile', 'Procfile');
       this.copy('README.md', 'README.md');
       this.copy('external-scripts.json', 'external-scripts.json');
       this.copy('hubot-scripts.json', 'hubot-scripts.json');
@@ -96,6 +132,9 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
   end: function () {
     this.npmInstall(['hubot', 'hubot-scripts'], {'save': true});
+    if (this.botAdapter != 'campfire') {
+      this.npmInstall(['hubot-' + this.botAdapter], {'save': true});
+    }
   }
 });
 

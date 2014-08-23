@@ -30,20 +30,34 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
   prompting: function () {
     var done = this.async();
+    var botName = this._.slugify(this.appname);
+    var userName = this.user.git.username;
+    var userEmail = this.user.git.email;
 
     // Have Yeoman greet the user.
     this.log(hubotSay());
 
 
     var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
+      name: 'botName',
+      message: 'Bot name',
+      default: botName
+    },
+    {
+      name: 'botDescription',
+      message: 'Description',
+      default: 'A simple helpful robot for your Company'
+    },
+    {
+      name: 'botOwner',
+      message: 'Owner',
+      default: userName+' <'+userEmail+'>'
     }];
 
     this.prompt(prompts, function (props) {
-      this.someOption = props.someOption;
+      this.botName = props.botName;
+      this.botDescription = props.botDescription;
+      this.botOwner = props.botOwner;
 
       done();
     }.bind(this));

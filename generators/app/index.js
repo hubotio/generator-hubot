@@ -7,13 +7,31 @@ var chalk = require('chalk');
 var npmName = require('npm-name');
 
 
-var hubotSay = function() {
+var hubotStartSay = function() {
   return  '                     _____________________________  ' + "\n" +
           ' _____              /                             \\ ' + "\n" +
-          ' \\    \\             | Soliciting input to initiate |' + "\n" +
+          ' \\    \\             |      Extracting input for    |' + "\n" +
           ' |    |    '+chalk.yellow('_____')+'    |   self-replication process   |' + "\n" +
           ' |__'+chalk.cyan('\\\\')+'|   '+chalk.yellow('/')+chalk.cyan('_____')+chalk.yellow('\\')+'   \\                             / ' + "\n" +
           '   '+chalk.cyan('|//') + chalk.yellow('+  |')+chalk.cyan('[^_/\\_]')+chalk.yellow('|')+'   /----------------------------  ' + "\n" +
+          '  '+chalk.yellow('|   | _|___')+'@@'+chalk.yellow('__|__')+'                                ' + "\n" +
+          '  '+chalk.yellow('+===+/  ///     ')+chalk.cyan('\\_\\')+'                               ' + "\n" +
+          '   '+chalk.cyan('| |_')+chalk.yellow('\\ /// HUBOT/')+chalk.cyan('\\\\')+'                             ' + "\n" +
+          '   '+chalk.cyan('|___/')+chalk.yellow('\\//      /')+chalk.cyan('  \\\\')+'                            ' + "\n" +
+          '         '+chalk.yellow('\\      /   +---+')+'                            ' + "\n" +
+          '          '+chalk.yellow('\\____/    |   |')+'                            ' + "\n" +
+          '           '+chalk.cyan('| //|')+'    '+chalk.yellow('+===+')+'                            ' + "\n" +
+          '            '+chalk.cyan('\\//')+'      |xx|                            ' +
+          "\n";
+};
+
+var hubotEndSay = function() {
+  return  '                     _____________________________  ' + "\n" +
+          '                    /                             \\ ' + "\n" +
+          ' '+chalk.cyan('  //\\')+'                |   Self-replication process   |' + "\n" +
+          ' '+chalk.cyan(' ////\\  ')+'  '+chalk.yellow('_____')+'    |          complete...         |' + "\n" +
+          ' '+chalk.cyan('//////\\  ')+chalk.yellow('/')+chalk.cyan('_____')+chalk.yellow('\\')+'   \\     Good luck with that.    / ' + "\n" +
+          ' '+chalk.cyan('=======') + chalk.yellow(' |')+chalk.cyan('[^_/\\_]')+chalk.yellow('|')+'   /----------------------------  ' + "\n" +
           '  '+chalk.yellow('|   | _|___')+'@@'+chalk.yellow('__|__')+'                                ' + "\n" +
           '  '+chalk.yellow('+===+/  ///     ')+chalk.cyan('\\_\\')+'                               ' + "\n" +
           '   '+chalk.cyan('| |_')+chalk.yellow('\\ /// HUBOT/')+chalk.cyan('\\\\')+'                             ' + "\n" +
@@ -42,7 +60,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
         default: userName+' <'+userEmail+'>'
       }];
 
-      this.log(hubotSay());
+      this.log(hubotStartSay());
 
       this.prompt(prompts, function (props) {
         this.botOwner = props.botOwner;
@@ -137,6 +155,8 @@ var HubotGenerator = yeoman.generators.Base.extend({
       packages.push('hubot-' + this.botAdapter);
     }
     this.npmInstall(packages, {'save': true});
+
+    this.log(hubotEndSay());
 
   }
 });

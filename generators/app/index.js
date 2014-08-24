@@ -10,8 +10,8 @@ var npmName = require('npm-name');
 var hubotSay = function() {
   return  '                     _____________________________  ' + "\n" +
           ' _____              /                             \\ ' + "\n" +
-          ' \\    \\             | Preparing to fashion new bot |' + "\n" +
-          ' |    |    '+chalk.yellow('_____')+'    |       in my likeness...      |' + "\n" +
+          ' \\    \\             | Soliciting input to initiate |' + "\n" +
+          ' |    |    '+chalk.yellow('_____')+'    |   self-replication process   |' + "\n" +
           ' |__'+chalk.cyan('\\\\')+'|   '+chalk.yellow('/')+chalk.cyan('_____')+chalk.yellow('\\')+'   \\                             / ' + "\n" +
           '   '+chalk.cyan('|//') + chalk.yellow('+  |')+chalk.cyan('[^_/\\_]')+chalk.yellow('|')+'   /----------------------------  ' + "\n" +
           '  '+chalk.yellow('|   | _|___')+'@@'+chalk.yellow('__|__')+'                                ' + "\n" +

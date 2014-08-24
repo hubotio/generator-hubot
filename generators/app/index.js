@@ -132,10 +132,12 @@ var HubotGenerator = yeoman.generators.Base.extend({
   },
 
   end: function () {
-    this.npmInstall(['hubot', 'hubot-scripts'], {'save': true});
+    var packages = ['hubot', 'hubot-scripts']
     if (this.botAdapter != 'campfire') {
-      this.npmInstall(['hubot-' + this.botAdapter], {'save': true});
+      packages.push('hubot-' + this.botAdapter);
     }
+    this.npmInstall(packages, {'save': true});
+
   }
 });
 

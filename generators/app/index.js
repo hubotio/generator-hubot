@@ -116,7 +116,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
       this.copy('bin/hubot.cmd', 'bin/hubot.cmd');
 
       this.template('Procfile', 'Procfile');
-      this.copy('README.md', 'README.md');
+      this.template('README.md', 'README.md');
       this.copy('external-scripts.json', 'external-scripts.json');
       this.copy('hubot-scripts.json', 'hubot-scripts.json');
 

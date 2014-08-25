@@ -47,7 +47,7 @@ var hubotEndSay = function() {
 var HubotGenerator = yeoman.generators.Base.extend({
   initializing: function () {
     this.pkg = require('../../package.json');
-    this.externalScripts = ['hubot-help'];
+    this.externalScripts = ['hubot-help', 'hubot-google-images'];
     this.hubotScripts = ["redis-brain.coffee", "shipit.coffee"];
   },
 

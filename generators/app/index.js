@@ -9,11 +9,11 @@ var npmName = require('npm-name');
 
 var hubotStartSay = function() {
   return  '                     _____________________________  ' + "\n" +
-          ' _____              /                             \\ ' + "\n" +
-          ' \\    \\             |      Extracting input for    |' + "\n" +
-          ' |    |    '+chalk.yellow('_____')+'    |   self-replication process   |' + "\n" +
-          ' |__'+chalk.cyan('\\\\')+'|   '+chalk.yellow('/')+chalk.cyan('_____')+chalk.yellow('\\')+'   \\                             / ' + "\n" +
-          '   '+chalk.cyan('|//') + chalk.yellow('+  |')+chalk.cyan('[^_/\\_]')+chalk.yellow('|')+'   /----------------------------  ' + "\n" +
+          '                    /                             \\ ' + "\n" +
+          ' '+chalk.cyan('  //\\')+'              |      Extracting input for    |' + "\n" +
+          ' '+chalk.cyan(' ////\\  ')+'  '+chalk.yellow('_____')+'    |   self-replication process   |' + "\n" +
+          ' '+chalk.cyan('//////\\  ')+chalk.yellow('/')+chalk.cyan('_____')+chalk.yellow('\\')+'   \\                             / ' + "\n" +
+          ' '+chalk.cyan('=======') + chalk.yellow(' |')+chalk.cyan('[^_/\\_]')+chalk.yellow('|')+'   /----------------------------  ' + "\n" +
           '  '+chalk.yellow('|   | _|___')+'@@'+chalk.yellow('__|__')+'                                ' + "\n" +
           '  '+chalk.yellow('+===+/  ///     ')+chalk.cyan('\\_\\')+'                               ' + "\n" +
           '   '+chalk.cyan('| |_')+chalk.yellow('\\ /// HUBOT/')+chalk.cyan('\\\\')+'                             ' + "\n" +
@@ -23,15 +23,16 @@ var hubotStartSay = function() {
           '           '+chalk.cyan('| //|')+'    '+chalk.yellow('+===+')+'                            ' + "\n" +
           '            '+chalk.cyan('\\//')+'      |xx|                            ' +
           "\n";
+
 };
 
 var hubotEndSay = function() {
   return  '                     _____________________________  ' + "\n" +
-          '                    /                             \\ ' + "\n" +
-          ' '+chalk.cyan('  //\\')+'                |   Self-replication process   |' + "\n" +
-          ' '+chalk.cyan(' ////\\  ')+'  '+chalk.yellow('_____')+'    |          complete...         |' + "\n" +
-          ' '+chalk.cyan('//////\\  ')+chalk.yellow('/')+chalk.cyan('_____')+chalk.yellow('\\')+'   \\     Good luck with that.    / ' + "\n" +
-          ' '+chalk.cyan('=======') + chalk.yellow(' |')+chalk.cyan('[^_/\\_]')+chalk.yellow('|')+'   /----------------------------  ' + "\n" +
+          ' _____              /                             \\ ' + "\n" +
+          ' \\    \\             |   Self-replication process   |' + "\n" +
+          ' |    |    '+chalk.yellow('_____')+'    |          complete...         |' + "\n" +
+          ' |__'+chalk.cyan('\\\\')+'|   '+chalk.yellow('/')+chalk.cyan('_____')+chalk.yellow('\\')+'   \\     Good luck with that.    / ' + "\n" +
+          '   '+chalk.cyan('|//') + chalk.yellow('+  |')+chalk.cyan('[^_/\\_]')+chalk.yellow('|')+'   /----------------------------  ' + "\n" +
           '  '+chalk.yellow('|   | _|___')+'@@'+chalk.yellow('__|__')+'                                ' + "\n" +
           '  '+chalk.yellow('+===+/  ///     ')+chalk.cyan('\\_\\')+'                               ' + "\n" +
           '   '+chalk.cyan('| |_')+chalk.yellow('\\ /// HUBOT/')+chalk.cyan('\\\\')+'                             ' + "\n" +

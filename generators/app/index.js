@@ -48,6 +48,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
   initializing: function () {
     this.pkg = require('../../package.json');
     this.externalScripts = ['hubot-help'];
+    this.hubotScripts = ["redis-brain.coffee", "shipit.coffee"];
   },
 
   prompting: {
@@ -139,7 +140,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
       this.template('README.md', 'README.md');
 
       this.write('external-scripts.json', JSON.stringify(this.externalScripts, undefined, 2));
-      this.copy('hubot-scripts.json', 'hubot-scripts.json');
+      this.write('hubot-scripts.json', JSON.stringify(this.hubotScripts, undefined, 2));
 
       this.copy('gitignore', '.gitignore');
       this.template('_package.json', 'package.json');

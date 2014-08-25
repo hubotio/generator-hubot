@@ -47,6 +47,7 @@ var hubotEndSay = function() {
 var HubotGenerator = yeoman.generators.Base.extend({
   initializing: function () {
     this.pkg = require('../../package.json');
+    this.externalScripts = ['hubot-help'];
   },
 
   prompting: {
@@ -136,7 +137,8 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
       this.template('Procfile', 'Procfile');
       this.template('README.md', 'README.md');
-      this.copy('external-scripts.json', 'external-scripts.json');
+
+      this.write('external-scripts.json', JSON.stringify(this.externalScripts, undefined, 2));
       this.copy('hubot-scripts.json', 'hubot-scripts.json');
 
       this.copy('gitignore', '.gitignore');
@@ -151,10 +153,13 @@ var HubotGenerator = yeoman.generators.Base.extend({
   },
 
   end: function () {
-    var packages = ['hubot', 'hubot-scripts']
+    var packages = ['hubot', 'hubot-scripts'];
+    packages = packages.concat(this.externalScripts);
+
     if (this.botAdapter != 'campfire') {
       packages.push('hubot-' + this.botAdapter);
     }
+
     this.npmInstall(packages, {'save': true});
 
     this.log(hubotEndSay());

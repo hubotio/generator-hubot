@@ -13,7 +13,9 @@ In hubot project repo, run:
 Then add **<%= appname %>** to your `external-scripts.json`:
 
 ```json
-["<%= appname %>"]
+[
+  "<%= appname %>"
+]
 ```
 
 ## Sample Interaction

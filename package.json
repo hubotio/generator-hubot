@@ -20,7 +20,9 @@
     "app"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "hubot",
+    "hubot-script"
   ],
   "dependencies": {
     "yeoman-generator": "^0.17.0",

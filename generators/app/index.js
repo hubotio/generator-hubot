@@ -51,6 +51,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
     this.externalScripts = [
       'hubot-help',
       'hubot-google-images',
+      'hubot-google-translate',
       'hubot-pugme',
       'hubot-maps',
       'hubot-shipit'

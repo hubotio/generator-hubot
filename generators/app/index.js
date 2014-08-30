@@ -54,6 +54,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
       'hubot-google-translate',
       'hubot-pugme',
       'hubot-maps',
+      'hubot-rules',
       'hubot-shipit',
       'hubot-youtube'
     ];

@@ -1,5 +1,12 @@
 # Description:
-#   Example scripts for you to examine and try out
+#   Example scripts for you to examine and try out.
+#
+# Notes:
+#   They are commented out by default, because most of them are pretty silly and
+#   wouldn't be useful and amusing enough for day to day huboting.
+#   Uncomment the ones you want to try and experiment with
+#
+#   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
 module.exports = (robot) ->
 
@@ -84,15 +91,15 @@ module.exports = (robot) ->
   #
   # robot.respond /have a soda/i, (msg) ->
   #   # Get number of sodas had (coerced to a number).
-  #   beersHad = robot.brain.get('totalSodas') * 1 or 0
+  #   sodasHad = robot.brain.get('totalSodas') * 1 or 0
   #
-  #   if beersHad > 4
+  #   if sodasHad > 4
   #     msg.reply "I'm too fizzy.."
   #
   #   else
   #     msg.reply 'Sure!'
   #
-  #     robot.brain.set 'totalSodas', beersHad+1
+  #     robot.brain.set 'totalSodas', sodasHad+1
   #
   # robot.respond /sleep it off/i, (msg) ->
   #   robot.brain.set 'totalSodas', 0

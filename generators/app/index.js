@@ -141,6 +141,22 @@ var HubotGenerator = yeoman.generators.Base.extend({
         done();
       }.bind(this));
     }
+
+    askForHeroku: function() {
+      var done = this.async();
+      var prompts = [{
+        name: 'heroku',
+        message: 'Setup for Heroku deployment?',
+        default: true,
+        type: 'confirm'
+      }];
+
+      this.prompt(prompts, function (props) {
+        this.heroku = props.heroku;
+
+        done();
+      }.bind(this));
+    }
   },
 
   writing: {
@@ -149,7 +165,6 @@ var HubotGenerator = yeoman.generators.Base.extend({
       this.copy('bin/hubot', 'bin/hubot');
       this.copy('bin/hubot.cmd', 'bin/hubot.cmd');
 
-      this.template('Procfile', 'Procfile');
       this.template('README.md', 'README.md');
 
       this.write('external-scripts.json', JSON.stringify(this.externalScripts, undefined, 2));
@@ -163,6 +178,12 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
     projectfiles: function () {
       this.copy('editorconfig', '.editorconfig');
+    }
+
+    heroku: function() {
+      if (this.heroku) {
+        this.template('Procfile', 'Procfile');
+      }
     }
   },
 

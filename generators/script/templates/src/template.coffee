@@ -12,7 +12,7 @@
 #   <optional notes required for the script>
 #
 # Author:
-#   <%= userName %>[@<org>]
+#   <%= scriptOwner %>
 
 module.exports = (robot) ->
   robot.respond /hello/, (msg) ->

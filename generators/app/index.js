@@ -50,6 +50,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
     this.externalScripts = [
       'hubot-help',
+      'hubot-heroku-keepalive',
       'hubot-google-images',
       'hubot-google-translate',
       'hubot-pugme',

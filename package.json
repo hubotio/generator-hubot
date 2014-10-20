@@ -31,6 +31,7 @@
     "npm-name": "^1.0.1"
   },
   "devDependencies": {
+    "grunt-release": "~0.6.0",
     "mocha": "*"
   },
   "peerDependencies": {

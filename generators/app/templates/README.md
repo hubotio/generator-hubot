@@ -36,14 +36,35 @@ Then you can interact with <%= botName %> by typing `<%= botName %> help`.
 
 ### Scripting
 
-An example script is included at `script/exampe.coffee`, so check it out to
-get started, along with the [Scripting Guide](https://github.com/github/hubot/blob/master/docs/scripting.md)
+An example script is included at `scripts/example.coffee`, so check it out to
+get started, along with the [Scripting Guide](https://github.com/github/hubot/blob/master/docs/scripting.md).
 
-A number of external scripts are included by default in `external-scripts.json`
+For many common tasks, there's a good chance someone has already one to do just
+the thing.
 
-Delete any scripts you think are useless or boring. Add packages
+### hubot-scripts
 
-###  Persistence
+There will inevitably be functionality that everyone will want. Instead
+of writing it yourself, you can check
+[hubot-scripts][hubot-scripts] for existing scripts.
+
+To enable scripts from the hubot-scripts package, add the script name with
+extension as a double quoted string to the `hubot-scripts.json` file in this
+repo.
+
+[hubot-scripts]: https://github.com/github/hubot-scripts
+
+### external-scripts
+
+Hubot is able to load scripts from third-party `npm` package. Check the package's documentation, but in general it is:
+
+1. Add the packages as dependencies into your `package.json`
+2. `npm install` to make sure those packages are installed
+3. Add the package name to `external-scripts.json` as a double quoted string
+
+You can review `external-scripts.json` to see what is included by default.
+
+##  Persistence
 
 If you are going to use the `hubot-redis-brain` package
 (strongly suggested), you will need to add the Redis to Go addon on Heroku which requires a verified
@@ -77,33 +98,6 @@ then run hubot with the adapter.
 Where `<adapter>` is the name of your adapter without the `hubot-` prefix.
 
 [hubot-adapters]: https://github.com/github/hubot/blob/master/docs/adapters.md
-
-## hubot-scripts
-
-There will inevitably be functionality that everyone will want. Instead
-of adding it to hubot itself, you can submit pull requests to
-[hubot-scripts][hubot-scripts].
-
-To enable scripts from the hubot-scripts package, add the script name with
-extension as a double quoted string to the `hubot-scripts.json` file in this
-repo.
-
-[hubot-scripts]: https://github.com/github/hubot-scripts
-
-## external-scripts
-
-Tired of waiting for your script to be merged into `hubot-scripts`? Want to
-maintain the repository and package yourself? Then this added functionality
-maybe for you!
-
-Hubot is now able to load scripts from third-party `npm` packages! To enable
-this functionality you can follow the following steps.
-
-1. Add the packages as dependencies into your `package.json`
-2. `npm install` to make sure those packages are installed
-
-To enable third-party scripts that you've added you will need to add the package
-name as a double quoted string to the `external-scripts.json` file in this repo.
 
 ## Deployment
 

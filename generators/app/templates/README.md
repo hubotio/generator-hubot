@@ -36,13 +36,16 @@ Then you can interact with <%= botName %> by typing `<%= botName %> help`.
 
 ### Scripting
 
-Take a look at the scripts in the `./scripts` folder for examples.
-Delete any scripts you think are useless or boring.  Add whatever functionality you
-want hubot to have. Read up on what you can do with hubot in the [Scripting Guide](https://github.com/github/hubot/blob/master/docs/scripting.md).
+An example script is included at `script/exampe.coffee`, so check it out to
+get started, along with the [Scripting Guide](https://github.com/github/hubot/blob/master/docs/scripting.md)
 
-### Redis Persistence
+A number of external scripts are included by default in `external-scripts.json`
 
-If you are going to use the `redis-brain.coffee` script from `hubot-scripts`
+Delete any scripts you think are useless or boring. Add packages
+
+###  Persistence
+
+If you are going to use the `hubot-redis-brain` package
 (strongly suggested), you will need to add the Redis to Go addon on Heroku which requires a verified
 account or you can create an account at [Redis to Go][redistogo] and manually
 set the `REDISTOGO_URL` variable.
@@ -50,7 +53,7 @@ set the `REDISTOGO_URL` variable.
     % heroku config:add REDISTOGO_URL="..."
 
 If you don't require any persistence feel free to remove the
-`redis-brain.coffee` from `hubot-scripts.json` and you don't need to worry
+`hubot-redis-brain` from `external-scripts.json` and you don't need to worry
 about redis at all.
 
 [redistogo]: https://redistogo.com/

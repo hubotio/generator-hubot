@@ -4,7 +4,7 @@
   "description": "Hubot generator for Yeoman",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "technicalpickles/generator-hubot",
+  "repository": "github/generator-hubot",
   "author": {
     "name": "Josh Nichols",
     "email": "josh@technicalpickles.com",

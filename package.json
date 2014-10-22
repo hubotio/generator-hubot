@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "description": "Hubot generator for Yeoman",
   "license": "MIT",
-  "main": "app/index.js",
+  "main": "generators/app/index.js",
   "repository": "github/generator-hubot",
   "author": {
     "name": "Josh Nichols",

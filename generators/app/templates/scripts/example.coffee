@@ -42,20 +42,20 @@ module.exports = (robot) ->
   #
   # answer = process.env.HUBOT_ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE_THE_UNIVERSE_AND_EVERYTHING
   #
-  # robot.respond /what is the answer to the ultimate question of life/, (msg)
+  # robot.respond /what is the answer to the ultimate question of life/, (msg) ->
   #   unless answer?
   #     msg.send "Missing HUBOT_ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE_THE_UNIVERSE_AND_EVERYTHING in environment: please set and try again"
   #     return
   #   msg.send "#{answer}, but what is the question?"
   #
-  # robot.respond /you are a little slow/, (msg)
+  # robot.respond /you are a little slow/, (msg) ->
   #   setTimeout () ->
   #     msg.send "Who you calling 'slow'?"
   #   , 60 * 1000
   #
   # annoyIntervalId = null
   #
-  # robot.respond /annoy me/, (msg)
+  # robot.respond /annoy me/, (msg) ->
   #   if annoyIntervalId
   #     msg.send "AAAAAAAAAAAEEEEEEEEEEEEEEEEEEEEEEEEIIIIIIIIHHHHHHHHHH"
   #     return
@@ -65,7 +65,7 @@ module.exports = (robot) ->
   #     msg.send "AAAAAAAAAAAEEEEEEEEEEEEEEEEEEEEEEEEIIIIIIIIHHHHHHHHHH"
   #   , 1000
   #
-  # robot.respond /unannoy me/, (msg)
+  # robot.respond /unannoy me/, (msg) ->
   #   if annoyIntervalId
   #     msg.send "GUYS, GUYS, GUYS!"
   #     clearInterval(annoyIntervalId)

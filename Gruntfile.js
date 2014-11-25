@@ -11,7 +11,7 @@ module.exports = function(grunt) {
           reporter: 'spec',
           require: 'coffee-script'
         },
-        src: ['test/**/*.coffee']
+        src: ['test/**/*.coffee','test/**/*.js']
       }
     },
     release: {
@@ -25,4 +25,6 @@ module.exports = function(grunt) {
       tasks: ['test']
     }
   });
+  // load all grunt-plugin tasks
+  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 };

@@ -21,8 +21,8 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: ['Gruntfile.js', 'test/**/*.coffee'],
-      tasks: ['test']
+      files: ['Gruntfile.js', 'test/**/*.coffee','test/**/*.js'],
+      tasks: ['mochaTest']
     }
   });
   // load all grunt-plugin tasks

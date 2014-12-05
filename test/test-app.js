@@ -19,10 +19,16 @@ describe('hubot:app', function () {
 
   it('creates files', function () {
     assert.file([
-      'bower.json',
+      'bin/hubot',
+      'bin/hubot.cmd',
+      'Procfile',
+      'README.md',
+      'external-scripts.json',
+      'hubot-scripts.json',
+      '.gitignore',
       'package.json',
+      'scripts/example.coffee',
       '.editorconfig',
-      '.jshintrc'
     ]);
   });
 });

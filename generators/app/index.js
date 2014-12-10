@@ -45,6 +45,15 @@ var hubotEndSay = function() {
 };
 
 var HubotGenerator = yeoman.generators.Base.extend({
+  constructor: function () {
+    yeoman.generators.Base.apply(this, arguments);
+
+    this.option('owner');
+    this.option('name');
+    this.option('description');
+    this.option('adapter');
+  },
+
   initializing: function () {
     this.pkg = require('../../package.json');
 
@@ -70,16 +79,18 @@ var HubotGenerator = yeoman.generators.Base.extend({
       var userName = this.user.git.name();
       var userEmail = this.user.git.email();
 
-      var prompts = [{
-        name: 'botOwner',
-        message: 'Owner',
-        default: userName+' <'+userEmail+'>'
-      }];
+      var prompts = [];
+      if (! this.options.owner) {
+        prompts.push({
+          name: 'botOwner',
+          message: 'Owner',
+          default: userName+' <'+userEmail+'>'
+        });
+      }
 
       this.log(hubotStartSay());
-
       this.prompt(prompts, function (props) {
-        this.botOwner = props.botOwner;
+        this.botOwner = this.options.owner || props.botOwner;
 
         done();
       }.bind(this));
@@ -89,20 +100,27 @@ var HubotGenerator = yeoman.generators.Base.extend({
       var done = this.async();
       var botName = this._.slugify(this.appname);
 
-      var prompts = [{
-        name: 'botName',
-        message: 'Bot name',
-        default: botName
-      },
-      {
-        name: 'botDescription',
-        message: 'Description',
-        default: 'A simple helpful robot for your Company'
-      }];
+      var prompts = []
+
+      if (! this.options.name) {
+        prompts.push({
+          name: 'botName',
+          message: 'Bot name',
+          default: botName
+        });
+      }
+
+      if (!this.options.description) {
+        prompts.push({
+          name: 'botDescription',
+          message: 'Description',
+          default: 'A simple helpful robot for your Company'
+        });
+      }
 
       this.prompt(prompts, function (props) {
-        this.botName = props.botName;
-        this.botDescription = props.botDescription;
+        this.botName = this.options.name || props.botName;
+        this.botDescription = this.options.description || props.botDescription;
 
         done();
       }.bind(this));
@@ -110,33 +128,37 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
     askForBotAdapter: function() {
       var done = this.async();
-      var prompts = [{
-        name: 'botAdapter',
-        message: 'Bot adapter',
-        default: 'campfire',
-        validate: function (botAdapter) {
-          var done = this.async();
 
-          if (botAdapter == 'campfire') {
-            done(true);
-            return
-          }
+      var prompts = [];
+      if (! this.options.adapter) {
+        prompts.push({
+          name: 'botAdapter',
+          message: 'Bot adapter',
+          default: 'campfire',
+          validate: function (botAdapter) {
+            var done = this.async();
 
-          var name = 'hubot-' + botAdapter;
-          npmName(name, function (err, available) {
-            console.log("got back " + available);
-            if (available) {
-              done("Can't that adapter on NPM, try again?");
-              return;
+            if (botAdapter == 'campfire') {
+              done(true);
+              return
             }
 
-            done(true);
-          });
-        }
-      }];
+            var name = 'hubot-' + botAdapter;
+            npmName(name, function (err, available) {
+              console.log("got back " + available);
+              if (available) {
+                done("Can't that adapter on NPM, try again?");
+                return;
+              }
+
+              done(true);
+            });
+          }
+        });
+      }
 
       this.prompt(prompts, function (props) {
-        this.botAdapter = props.botAdapter;
+        this.botAdapter = this.options.adapter || props.botAdapter;
 
         done();
       }.bind(this));

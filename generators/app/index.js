@@ -45,6 +45,26 @@ var hubotEndSay = function() {
 };
 
 var HubotGenerator = yeoman.generators.Base.extend({
+
+  determineDefaultOwner: function() {
+    var userName = this.user.git.name();
+    var userEmail = this.user.git.email();
+
+    if (userName && userEmail) {
+      return userName+' <'+userEmail+'>';
+    } else {
+      return "User <user@example.com>";
+    }
+  },
+
+  determineDefaultName: function() {
+    return this._.slugify(this.appname);
+  },
+
+  defaultAdapter: 'campfire',
+  defaultDescription: 'A simple helpful robot for your Company',
+
+
   constructor: function () {
     yeoman.generators.Base.apply(this, arguments);
 
@@ -53,6 +73,14 @@ var HubotGenerator = yeoman.generators.Base.extend({
     this.option('name');
     this.option('description');
     this.option('adapter');
+    this.option('defaults');
+
+    if (this.options.defaults) {
+      this.options.owner = this.options.owner || this.determineDefaultOwner();
+      this.options.name = this.options.name || this.determineDefaultName();
+      this.options.adapter = this.options.adapter || this.defaultAdapter;
+      this.options.description = this.options.description || this.defaultDescription;
+    }
   },
 
   initializing: function () {
@@ -77,15 +105,14 @@ var HubotGenerator = yeoman.generators.Base.extend({
   prompting: {
     askFor: function () {
       var done = this.async();
-      var userName = this.user.git.name();
-      var userEmail = this.user.git.email();
+      var botOwner = this.determineDefaultOwner();
 
       var prompts = [];
       if (! this.options.owner) {
         prompts.push({
           name: 'botOwner',
           message: 'Owner',
-          default: userName+' <'+userEmail+'>'
+          default: botOwner
         });
       }
 
@@ -99,7 +126,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
     askForBotNameAndDescription: function() {
       var done = this.async();
-      var botName = this._.slugify(this.appname);
+      var botName = this.determineDefaultName()
 
       var prompts = []
 
@@ -115,7 +142,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
         prompts.push({
           name: 'botDescription',
           message: 'Description',
-          default: 'A simple helpful robot for your Company'
+          default: this.defaultDescription
         });
       }
 
@@ -136,7 +163,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
         prompts.push({
           name: 'botAdapter',
           message: 'Bot adapter',
-          default: 'campfire',
+          default: this.defaultAdapter,
           validate: function (botAdapter) {
             var done = this.async();
 

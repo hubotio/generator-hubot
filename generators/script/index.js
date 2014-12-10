@@ -2,7 +2,6 @@
 var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
-var yosay = require('yosay');
 var chalk = require('chalk');
 var npmName = require('npm-name');
 
@@ -118,10 +117,10 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
       this.copy('script/test', 'script/test');
 
       this.mkdir('src');
-      this.copy('src/template.coffee', 'src/' + this.scriptName + '.coffee');
+      this.template('src/template.coffee', 'src/' + this.scriptName + '.coffee');
 
       this.mkdir('test');
-      this.copy('test/template-test.coffee', 'test/' + this.scriptName + '-test.coffee');
+      this.template('test/template-test.coffee', 'test/' + this.scriptName + '-test.coffee');
 
       this.copy('Gruntfile.js', 'Gruntfile.js');
       this.copy('gitignore', '.gitignore');

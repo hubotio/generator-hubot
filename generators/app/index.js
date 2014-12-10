@@ -48,6 +48,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
   constructor: function () {
     yeoman.generators.Base.apply(this, arguments);
 
+    // FIXME add documentation to these
     this.option('owner');
     this.option('name');
     this.option('description');
@@ -130,6 +131,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
       var done = this.async();
 
       var prompts = [];
+      // FIXME validate argument like we do when prompting
       if (! this.options.adapter) {
         prompts.push({
           name: 'botAdapter',

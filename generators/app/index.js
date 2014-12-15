@@ -45,6 +45,26 @@ var hubotEndSay = function() {
 };
 
 var HubotGenerator = yeoman.generators.Base.extend({
+
+  constructor: function () {
+    yeoman.generators.Base.apply(this, arguments);
+
+    // Arguments are not required since interactive mode is the default
+    this.argument('botowner', { type: String, required: false, desc: 'Bot owner i.e. Full Name <email@example.com>' });
+    this.botOwner = this.botowner;
+
+    this.argument('botname', { type: String, required: false, desc: 'Bot name' });
+    this.botName = this.botname;
+
+    this.argument('botdescription', { type: String, required: false, desc: 'Bot description', defaults: 'A simple helpful robot for your Company' });
+    this.botDescription = this.botdescription;
+
+    this.argument('botadapter', { type: String, required: false, desc: 'Bot adapter', defaults: 'campfire' });
+    this.botAdapter = this.botadapter;
+
+    this.log('Got some args, they are: ' + this.botOwner + ', ' + this.botName + ', ' + this.botDescription + ', ' + this.botAdapter);
+  },
+
   initializing: function () {
     this.pkg = require('../../package.json');
 

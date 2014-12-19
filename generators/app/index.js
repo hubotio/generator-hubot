@@ -45,6 +45,44 @@ var hubotEndSay = function() {
 };
 
 var HubotGenerator = yeoman.generators.Base.extend({
+
+  determineDefaultOwner: function() {
+    var userName = this.user.git.name();
+    var userEmail = this.user.git.email();
+
+    if (userName && userEmail) {
+      return userName+' <'+userEmail+'>';
+    } else {
+      return "User <user@example.com>";
+    }
+  },
+
+  determineDefaultName: function() {
+    return this._.slugify(this.appname);
+  },
+
+  defaultAdapter: 'campfire',
+  defaultDescription: 'A simple helpful robot for your Company',
+
+
+  constructor: function () {
+    yeoman.generators.Base.apply(this, arguments);
+
+    // FIXME add documentation to these
+    this.option('owner', {desc: "Name and email of the owner of new bot (ie Example <user@example.com>)"});
+    this.option('name', {desc: "Name of new bot"});
+    this.option('description', {desc: "Description of the new bot"});
+    this.option('adapter', {desc: "Hubot adapter to use for new bot"});
+    this.option('defaults', {desc: "Accept defaults and don't prompt for user input"});
+
+    if (this.options.defaults) {
+      this.options.owner = this.options.owner || this.determineDefaultOwner();
+      this.options.name = this.options.name || this.determineDefaultName();
+      this.options.adapter = this.options.adapter || this.defaultAdapter;
+      this.options.description = this.options.description || this.defaultDescription;
+    }
+  },
+
   initializing: function () {
     this.pkg = require('../../package.json');
 
@@ -69,19 +107,20 @@ var HubotGenerator = yeoman.generators.Base.extend({
   prompting: {
     askFor: function () {
       var done = this.async();
-      var userName = this.user.git.name();
-      var userEmail = this.user.git.email();
+      var botOwner = this.determineDefaultOwner();
 
-      var prompts = [{
-        name: 'botOwner',
-        message: 'Owner',
-        default: userName+' <'+userEmail+'>'
-      }];
+      var prompts = [];
+      if (! this.options.owner) {
+        prompts.push({
+          name: 'botOwner',
+          message: 'Owner',
+          default: botOwner
+        });
+      }
 
       this.log(hubotStartSay());
-
       this.prompt(prompts, function (props) {
-        this.botOwner = props.botOwner;
+        this.botOwner = this.options.owner || props.botOwner;
 
         done();
       }.bind(this));
@@ -89,22 +128,29 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
     askForBotNameAndDescription: function() {
       var done = this.async();
-      var botName = this._.slugify(this.appname);
+      var botName = this.determineDefaultName()
 
-      var prompts = [{
-        name: 'botName',
-        message: 'Bot name',
-        default: botName
-      },
-      {
-        name: 'botDescription',
-        message: 'Description',
-        default: 'A simple helpful robot for your Company'
-      }];
+      var prompts = []
+
+      if (! this.options.name) {
+        prompts.push({
+          name: 'botName',
+          message: 'Bot name',
+          default: botName
+        });
+      }
+
+      if (!this.options.description) {
+        prompts.push({
+          name: 'botDescription',
+          message: 'Description',
+          default: this.defaultDescription
+        });
+      }
 
       this.prompt(prompts, function (props) {
-        this.botName = props.botName;
-        this.botDescription = props.botDescription;
+        this.botName = this.options.name || props.botName;
+        this.botDescription = this.options.description || props.botDescription;
 
         done();
       }.bind(this));
@@ -112,33 +158,38 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
     askForBotAdapter: function() {
       var done = this.async();
-      var prompts = [{
-        name: 'botAdapter',
-        message: 'Bot adapter',
-        default: 'campfire',
-        validate: function (botAdapter) {
-          var done = this.async();
 
-          if (botAdapter == 'campfire') {
-            done(true);
-            return
-          }
+      var prompts = [];
+      // FIXME validate argument like we do when prompting
+      if (! this.options.adapter) {
+        prompts.push({
+          name: 'botAdapter',
+          message: 'Bot adapter',
+          default: this.defaultAdapter,
+          validate: function (botAdapter) {
+            var done = this.async();
 
-          var name = 'hubot-' + botAdapter;
-          npmName(name, function (err, available) {
-            console.log("got back " + available);
-            if (available) {
-              done("Can't find that adapter on NPM, try again?");
-              return;
+            if (botAdapter == 'campfire') {
+              done(true);
+              return
             }
 
-            done(true);
-          });
-        }
-      }];
+            var name = 'hubot-' + botAdapter;
+            npmName(name, function (err, available) {
+              console.log("got back " + available);
+              if (available) {
+                done("Can't that adapter on NPM, try again?");
+                return;
+              }
+
+              done(true);
+            });
+          }
+        });
+      }
 
       this.prompt(prompts, function (props) {
-        this.botAdapter = props.botAdapter;
+        this.botAdapter = this.options.adapter || props.botAdapter;
 
         done();
       }.bind(this));

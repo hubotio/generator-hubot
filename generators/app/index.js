@@ -69,11 +69,11 @@ var HubotGenerator = yeoman.generators.Base.extend({
     yeoman.generators.Base.apply(this, arguments);
 
     // FIXME add documentation to these
-    this.option('owner');
-    this.option('name');
-    this.option('description');
-    this.option('adapter');
-    this.option('defaults');
+    this.option('owner', {desc: "Name and email of the owner of new bot (ie Example <user@example.com>)"});
+    this.option('name', {desc: "Name of new bot"});
+    this.option('description', {desc: "Description of the new bot"});
+    this.option('adapter', {desc: "Hubot adapter to use for new bot"});
+    this.option('defaults', {desc: "Accept defaults and don't prompt for user input"});
 
     if (this.options.defaults) {
       this.options.owner = this.options.owner || this.determineDefaultOwner();

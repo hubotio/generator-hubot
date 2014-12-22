@@ -125,7 +125,7 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
       this.copy('Gruntfile.js', 'Gruntfile.js');
       this.copy('gitignore', '.gitignore');
       this.copy('.travis.yml', '.travis.yml');
-      this.copy('index.coffee', 'index.coffee');
+      this.template('index.coffee', 'index.coffee');
       this.template('_package.json', 'package.json');
       this.copy('README.md', 'README.md');
     },

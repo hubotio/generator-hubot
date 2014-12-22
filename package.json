@@ -1,6 +1,6 @@
 {
   "name": "generator-hubot",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Hubot generator for Yeoman",
   "license": "MIT",
   "main": "generators/app/index.js",
@@ -31,7 +31,10 @@
     "npm-name": "^1.0.1"
   },
   "devDependencies": {
+    "coffee-script": "^1.6.3",
     "grunt": "~0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-mocha-test": "^0.12.4",
     "grunt-release": "~0.6.0",
     "matchdep": "~0.1.2",
     "mocha": "*"

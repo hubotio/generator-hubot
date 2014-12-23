@@ -1,3 +1,8 @@
+0.2.1
+=====
+
+* [script] Fix generated index.coffee to load synchronously, so help commands are available in time https://github.com/github/generator-hubot/pull/19
+
 0.2.0
 =====
 

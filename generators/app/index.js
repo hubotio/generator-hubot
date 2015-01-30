@@ -70,7 +70,8 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
     // FIXME add documentation to these
     this.option('owner', {
-      desc: "Name and email of the owner of new bot (ie Example <user@example.com>)"
+      desc: "Name and email of the owner of new bot (ie Example <user@example.com>)",
+      type: String
     });
 
     this.option('name', {
@@ -85,8 +86,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
     this.option('adapter', {
       desc: "Hubot adapter to use for new bot",
-      type: String,
-      required: true
+      type: String
     });
 
     this.option('defaults', {
@@ -99,6 +99,22 @@ var HubotGenerator = yeoman.generators.Base.extend({
       this.options.name = this.options.name || this.determineDefaultName();
       this.options.adapter = this.options.adapter || this.defaultAdapter;
       this.options.description = this.options.description || this.defaultDescription;
+    }
+
+    if (this.options.owner == true) {
+      this.env.error("Missing owner. Make sure to specify it like --owner=\"<owner>\"");
+    }
+
+    if (this.options.name == true) {
+      this.env.error("Missing name. Make sure to specify it like --name=\"<name>\"");
+    }
+
+    if (this.options.description == true) {
+      this.env.error("Missing description. Make sure to specify it like --description=\"<description>\"");
+    }
+
+    if (this.options.adapter == true) {
+      this.env.error("Missing adapter name. Make sure to specify it like --adapter=<adapter>");
     }
   },
 

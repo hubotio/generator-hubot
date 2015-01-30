@@ -69,17 +69,52 @@ var HubotGenerator = yeoman.generators.Base.extend({
     yeoman.generators.Base.apply(this, arguments);
 
     // FIXME add documentation to these
-    this.option('owner', {desc: "Name and email of the owner of new bot (ie Example <user@example.com>)"});
-    this.option('name', {desc: "Name of new bot"});
-    this.option('description', {desc: "Description of the new bot"});
-    this.option('adapter', {desc: "Hubot adapter to use for new bot"});
-    this.option('defaults', {desc: "Accept defaults and don't prompt for user input"});
+    this.option('owner', {
+      desc: "Name and email of the owner of new bot (ie Example <user@example.com>)",
+      type: String
+    });
+
+    this.option('name', {
+      desc: "Name of new bot",
+      type: String
+    });
+
+    this.option('description', {
+      desc: "Description of the new bot",
+      type: String
+    });
+
+    this.option('adapter', {
+      desc: "Hubot adapter to use for new bot",
+      type: String
+    });
+
+    this.option('defaults', {
+      desc: "Accept defaults and don't prompt for user input",
+      type: Boolean
+    });
 
     if (this.options.defaults) {
       this.options.owner = this.options.owner || this.determineDefaultOwner();
       this.options.name = this.options.name || this.determineDefaultName();
       this.options.adapter = this.options.adapter || this.defaultAdapter;
       this.options.description = this.options.description || this.defaultDescription;
+    }
+
+    if (this.options.owner == true) {
+      this.env.error("Missing owner. Make sure to specify it like --owner=\"<owner>\"");
+    }
+
+    if (this.options.name == true) {
+      this.env.error("Missing name. Make sure to specify it like --name=\"<name>\"");
+    }
+
+    if (this.options.description == true) {
+      this.env.error("Missing description. Make sure to specify it like --description=\"<description>\"");
+    }
+
+    if (this.options.adapter == true) {
+      this.env.error("Missing adapter name. Make sure to specify it like --adapter=<adapter>");
     }
   },
 

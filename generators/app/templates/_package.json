@@ -8,6 +8,7 @@
   "description": "<%= botDescription %>",
 
   "dependencies": {
+    "coffee-script": "<%= botCoffee %>"
   },
 
   "engines": {

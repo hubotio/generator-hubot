@@ -4,8 +4,9 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var chalk = require('chalk');
-var npmName = require('npm-name');
+var npm = require('npm');
 
+npm.load();
 
 var hubotStartSay = function() {
   return  '                     _____________________________  ' + "\n" +
@@ -63,6 +64,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
   defaultAdapter: 'campfire',
   defaultDescription: 'A simple helpful robot for your Company',
+  defaultCoffee: '1.6.3',
 
 
   constructor: function () {
@@ -89,6 +91,12 @@ var HubotGenerator = yeoman.generators.Base.extend({
       type: String
     });
 
+    this.option('coffee', {
+      desc: "Version of coffee-script to use for new bot",
+      type: String
+    });
+
+
     this.option('defaults', {
       desc: "Accept defaults and don't prompt for user input",
       type: Boolean
@@ -99,6 +107,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
       this.options.name = this.options.name || this.determineDefaultName();
       this.options.adapter = this.options.adapter || this.defaultAdapter;
       this.options.description = this.options.description || this.defaultDescription;
+      this.options.coffee = this.options.coffee || this.defaultCoffee;
     }
 
     if (this.options.owner == true) {
@@ -115,6 +124,10 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
     if (this.options.adapter == true) {
       this.env.error("Missing adapter name. Make sure to specify it like --adapter=<adapter>");
+    }
+
+    if (this.options.coffee == true) {
+      this.env.error("Missing coffee-script version. Make sure to specify it like --coffee=<version>");
     }
   },
 
@@ -210,10 +223,11 @@ var HubotGenerator = yeoman.generators.Base.extend({
             }
 
             var name = 'hubot-' + botAdapter;
-            npmName(name, function (err, available) {
-              console.log("got back " + available);
-              if (available) {
-                done("Can't that adapter on NPM, try again?");
+            npm.commands.view([name], true, function (err, data) {
+              var versions = Object.keys(data);
+              console.log("got back " + versions.length);
+              if (!versions.length) {
+                done("Can't find that adapter on NPM, try again?");
                 return;
               }
 
@@ -225,6 +239,46 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
       this.prompt(prompts, function (props) {
         this.botAdapter = this.options.adapter || props.botAdapter;
+
+        done();
+      }.bind(this));
+    },
+
+    askForCoffee: function() {
+      var done = this.async();
+
+      var prompts = [];
+      // FIXME validate argument like we do when prompting
+      if (! this.options.coffee) {
+        prompts.push({
+          name: 'botCoffee',
+          message: 'Bot coffee-script',
+          default: this.defaultCoffee,
+          validate: function (botCoffee) {
+            var done = this.async();
+
+            if (botCoffee == '1.6.3') {
+              done(true);
+              return
+            }
+
+            var name = 'coffee-script@' + botCoffee;
+            npm.commands.view([name], true, function (err, data) {
+              var versions = Object.keys(data);
+              console.log("got back " + versions.length);
+              if (!versions.length) {
+                done("Can't find that version of coffee-script on NPM, try again?");
+                return;
+              }
+
+              done(true);
+            });
+          }
+        });
+      }
+
+      this.prompt(prompts, function (props) {
+        this.botCoffee = this.options.coffee || props.botCoffee;
 
         done();
       }.bind(this));

@@ -27,6 +27,7 @@
     "hubot": "2.x",
     "mocha": "*",
     "chai": "*",
+    "coffee-script": "^1.6.3",
     "sinon-chai": "*",
     "sinon": "*",
     "grunt-mocha-test": "~0.7.0",

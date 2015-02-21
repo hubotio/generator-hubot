@@ -47,8 +47,20 @@ var hubotEndSay = function() {
 var HubotGenerator = yeoman.generators.Base.extend({
 
   determineDefaultOwner: function() {
-    var userName = this.user.git.name();
-    var userEmail = this.user.git.email();
+    var userName;
+    var userEmail;
+
+    if (typeof(this.user.git.name) == 'function') {
+      userName = this.user.git.name()
+    } else {
+      userName = this.user.git.name
+    }
+
+    if (typeof(this.user.git.email) == 'function') {
+      userEmail = this.user.git.email()
+    } else {
+      userEmail = this.user.git.email
+    }
 
     if (userName && userEmail) {
       return userName+' <'+userEmail+'>';

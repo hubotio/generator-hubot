@@ -15,7 +15,8 @@ has, etc!
 ### Running <%= botName %> Locally
 
 You can test your hubot by running the following, however some plugins will not
-behave as expected unless their specific environment variables have been set.
+behave as expected unless the [environment variables](#configuration) they rely
+upon have been set.
 
 You can start <%= botName %> locally by running:
 
@@ -33,6 +34,25 @@ Then you can interact with <%= botName %> by typing `<%= botName %> help`.
     <%= botName %> help - Displays all of the help commands that <%= botName %> knows about.
     ...
 
+### Configuration
+
+A few scripts (including some installed by default) require environment
+variables to be set as a simple form of configuration.
+
+Each script should have a commented header which contains a "Configuration"
+section that explains which values it requires to be placed in which variable.
+When you have lots of scripts installed this process can be quite labour
+intensive. The following shell command can be used as a stop gap until an
+easier way to do this has been implemented.
+
+    grep -o 'hubot-[a-z0-9_-]\+' external-scripts.json | \
+      xargs -n1 -i sh -c 'sed -n "/^# Configuration/,/^#$/ s/^/{} /p" \
+          $(find node_modules/{}/ -name "*.coffee")' | \
+        awk -F '#' '{ printf "%-25s %s\n", $1, $2 }'
+
+How to set environment variables will be specific to your operating system.
+Rather than recreate the various methods and best practices in achieving this,
+it's suggested that you search for a dedicated guide focused on your OS.
 
 ### Scripting
 
@@ -66,6 +86,26 @@ To use a package, check the package's documentation, but in general it is:
 
 You can review `external-scripts.json` to see what is included by default.
 
+##### Advanced Usage
+
+It is also possible to define `external-scripts.json` as an object to
+explicitly specify which scripts from a package should be included. The example
+below, for example, will only activate two of the six available scripts inside
+the `hubot-fun` plugin, but all four of those in `hubot-auto-deploy`.
+
+```json
+{
+  "hubot-fun": [
+    "crazy",
+    "thanks"
+  ],
+  "hubot-auto-deploy": "*"
+}
+```
+
+**Be aware that not all plugins support this usage and will typically fallback
+to including all scripts.**
+
 [npmjs]: https://www.npmjs.com
 
 ### hubot-scripts
@@ -97,8 +137,8 @@ from `external-scripts.json` and you don't need to worry about redis at all.
 
 ## Adapters
 
-Adapters are the interface to the service you want your hubot to run on. For
-instance Campfire or IRC. There are a number of third party adapters that the
+Adapters are the interface to the service you want your hubot to run on, such
+as Campfire or IRC. There are a number of third party adapters that the
 community have contributed. Check [Hubot Adapters][hubot-adapters] for the
 available ones.
 

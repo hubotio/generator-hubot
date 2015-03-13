@@ -15,8 +15,8 @@
 #   <%= scriptOwner %>
 
 module.exports = (robot) ->
-  robot.respond /hello/, (msg) ->
-    msg.reply "hello!"
+  robot.respond /hello/, (res) ->
+    res.reply "hello!"
 
   robot.hear /orly/, ->
-    msg.send "yarly"
+    res.send "yarly"

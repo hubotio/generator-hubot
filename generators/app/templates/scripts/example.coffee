@@ -103,4 +103,4 @@ module.exports = (robot) ->
   #
   # robot.respond /sleep it off/i, (res) ->
   #   robot.brain.set 'totalSodas', 0
-  #   robot.respond 'zzzzz'
+  #   res.reply 'zzzzz'

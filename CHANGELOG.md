@@ -1,3 +1,10 @@
+0.3.1
+=====
+
+* [app] don't include youtube by default since the API is deprecated, and the new API requires an API key https://github.com/github/generator-hubot/pull/43
+* [app] fix copy when can't find something on npm https://github.com/github/generator-hubot/pull/39
+* [app] update README to fix deprecated xargs argument https://github.com/github/generator-hubot/pull/41
+
 0.3.0
 =====
 

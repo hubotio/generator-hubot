@@ -1,5 +1,7 @@
 # generator-hubot
 
+[![Join the chat at https://gitter.im/github/generator-hubot](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/github/generator-hubot?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A [Yeoman](http://yeoman.io) generator for creating your own chatbot using the Hubot framework
 
 

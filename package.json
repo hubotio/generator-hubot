@@ -38,8 +38,5 @@
     "grunt-release": "~0.6.0",
     "matchdep": "~0.1.2",
     "mocha": "*"
-  },
-  "peerDependencies": {
-    "yo": ">=1.0.0"
   }
 }

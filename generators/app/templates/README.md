@@ -57,7 +57,7 @@ it's suggested that you search for a dedicated guide focused on your OS.
 ### Scripting
 
 An example script is included at `scripts/example.coffee`, so check it out to
-get started, along with the [Scripting Guide](scripting-docs).
+get started, along with the [Scripting Guide][scripting-docs].
 
 For many common tasks, there's a good chance someone has already one to do just
 the thing.
@@ -71,7 +71,7 @@ writing it yourself, you can use existing plugins.
 
 Hubot is able to load plugins from third-party `npm` packages. This is the
 recommended way to add functionality to your hubot. You can get a list of
-available hubot plugins on [npmjs.com](npmjs) or by using `npm search`:
+available hubot plugins on [npmjs.com][npmjs] or by using `npm search`:
 
     % npm search hubot-scripts panda
     NAME             DESCRIPTION                        AUTHOR DATE       VERSION KEYWORDS

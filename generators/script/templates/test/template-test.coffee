@@ -1,19 +1,27 @@
+Helper = require('hubot-test-helper')
 chai = require 'chai'
-sinon = require 'sinon'
-chai.use require 'sinon-chai'
 
 expect = chai.expect
 
+helper = new Helper('../src/<%= scriptName %>.coffee')
+
 describe '<%= scriptName %>', ->
   beforeEach ->
-    @robot =
-      respond: sinon.spy()
-      hear: sinon.spy()
+    @room = helper.createRoom()
 
-    require('../src/<%= scriptName %>')(@robot)
+  afterEach ->
+    @room.destroy()
 
-  it 'registers a respond listener', ->
-    expect(@robot.respond).to.have.been.calledWith(/hello/)
+  it 'responds to hello', ->
+    @room.user.say('alice', '@hubot hello').then =>
+      expect(@room.messages).to.eql [
+        ['alice', '@hubot hello']
+        ['hubot', '@alice hello!']
+      ]
 
-  it 'registers a hear listener', ->
-    expect(@robot.hear).to.have.been.calledWith(/orly/)
+  it 'hears orly', ->
+    @room.user.say('bob', 'just wanted to say orly').then =>
+      expect(@room.messages).to.eql [
+        ['bob', 'just wanted to say orly']
+        ['hubot', 'yarly']
+      ]

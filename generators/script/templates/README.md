@@ -24,3 +24,7 @@ Then add **<%= appname %>** to your `external-scripts.json`:
 user1>> hubot hello
 hubot>> hello!
 ```
+
+## NPM Module
+
+https://www.npmjs.com/package/<%= appname %>

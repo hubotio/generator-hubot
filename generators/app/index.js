@@ -221,8 +221,8 @@ var HubotGenerator = yeoman.generators.Base.extend({
             }
 
             var name = 'hubot-' + botAdapter;
-            npmName(name, function (err, available) {
-              if (available) {
+            npmName(name, function (err, unavailable) {
+              if (unavailable) {
                 done("Can't find that adapter on NPM, try again?");
                 return;
               }

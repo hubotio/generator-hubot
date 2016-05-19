@@ -216,7 +216,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
             var done = this.async();
 
             if (botAdapter == 'campfire') {
-              done(true);
+              done(null, true);
               return
             }
 
@@ -228,7 +228,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
                 return;
               }
 
-              done(true);
+              done(null, true);
             });
           }
         });

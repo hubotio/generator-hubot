@@ -24,6 +24,7 @@
   },
 
   "devDependencies": {
+    "hubot-test-helper": "^1.3.0",
     "chai": "^2.1.1",
     "coffee-script": "1.6.3",
     "grunt": "^0.4.5",

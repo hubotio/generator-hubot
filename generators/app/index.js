@@ -216,19 +216,18 @@ var HubotGenerator = yeoman.generators.Base.extend({
             var done = this.async();
 
             if (botAdapter == 'campfire') {
-              done(true);
+              done(null, true);
               return
             }
 
             var name = 'hubot-' + botAdapter;
-            npmName(name, function (err, available) {
-              console.log("got back " + available);
-              if (available) {
+            npmName(name, function (err, unavailable) {
+              if (unavailable) {
                 done("Can't find that adapter on NPM, try again?");
                 return;
               }
 
-              done(true);
+              done(null, true);
             });
           }
         });

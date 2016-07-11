@@ -9,11 +9,11 @@
 
   "repository": {
     "type": "git",
-    "url": "git://github.com/hubot-scripts/<%= appname %>.git"
+    "url": "git://github.com/<%= orgName %>/<%= appname %>.git"
   },
 
   "bugs": {
-    "url": "https://github.com/hubot-scripts/<%= appname %>/issues"
+    "url": "https://github.com/<%= orgName %>/<%= appname %>/issues"
   },
 
   "dependencies": {
@@ -24,7 +24,8 @@
   },
 
   "devDependencies": {
-    "hubot-test-helper": "^1.3.0",
+    "hubot-test-helper": "github:eedevops/hubot-test-helper",
+    "hubot-enterprise": "github:eedevops/hubot-enterprise",
     "chai": "^2.1.1",
     "coffee-script": "1.6.3",
     "grunt": "^0.4.5",
@@ -42,6 +43,8 @@
   "main": "index.coffee",
 
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "coffeelint": "coffeelint --reporter jslint -r . > coffee-lint.xml || true",
+    "jslint": "jshint --exclude-path .gitignore --reporter=jslint .> js-lint.xml || true"
   }
 }

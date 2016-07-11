@@ -3,7 +3,9 @@ chai = require 'chai'
 
 expect = chai.expect
 
-helper = new Helper('../src/<%= scriptName %>.coffee')
+helper = new Helper(['../node_modules/hubot-enterprise/src/0_bootstrap.coffee', '../src/<%= scriptName %>.coffee'])
+
+process.env.HUBOT_LOG_LEVEL='error'
 
 describe '<%= scriptName %>', ->
   beforeEach ->
@@ -12,16 +14,16 @@ describe '<%= scriptName %>', ->
   afterEach ->
     @room.destroy()
 
-  it 'responds to hello', ->
-    @room.user.say('alice', '@hubot hello').then =>
+  it 'responds to <%= scriptName %> create', ->
+    @room.user.say('alice', '@hubot <%= scriptName %> create issue').then =>
       expect(@room.messages).to.eql [
-        ['alice', '@hubot hello']
-        ['hubot', '@alice hello!']
+        ['alice', '@hubot <%= scriptName %> create issue']
+        ['hubot', '@alice in <%= scriptName %> create']
       ]
 
-  it 'hears orly', ->
-    @room.user.say('bob', 'just wanted to say orly').then =>
+  it 'hears <%= scriptName %> update', ->
+    @room.user.say('bob', '<%= scriptName %> update issue').then =>
       expect(@room.messages).to.eql [
-        ['bob', 'just wanted to say orly']
-        ['hubot', 'yarly']
+        ['bob', '<%= scriptName %> update issue']
+        ['hubot', 'in <%= scriptName %> update']
       ]

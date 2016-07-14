@@ -244,6 +244,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
       this.template('Procfile', 'Procfile');
       this.template('README.md', 'README.md');
+	  this.template('install-slackapp.coffee', 'install-slackapp.coffee');
 
 	  // HACK: not installing hubot-enterprise from npm registry
       this.write('external-scripts.json', JSON.stringify(['hubot-enterprise'].concat(this.externalScripts), undefined, 2));
@@ -260,7 +261,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
   },
 
   end: function () {
-    var packages = ['hubot', 'hubot-scripts', 'eedevops/hubot-enterprise'];
+    var packages = ['hubot', 'hubot-scripts', 'eedevops/hubot-enterprise', 'botkit', 'querystring', 'jfs'];
     packages = packages.concat(this.externalScripts);
 
     if (this.botAdapter != 'campfire') {

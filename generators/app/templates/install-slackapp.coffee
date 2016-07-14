@@ -26,7 +26,16 @@ dataStore.get name, (err, data)->
         {
           clientId: clientId,
           clientSecret: cs,
-          scopes: ['bot','channels:write', 'channels:history', 'groups:write', 'groups:history'],
+          scopes: ['bot','admin', 'channels:history', 'channels:read',
+            'channels:write', 'chat:write:bot', 'chat:write:user', 'dnd:read',
+            'dnd:write', 'emoji:read', 'files:read', 'files:write:user',
+            'groups:history', 'groups:read', 'groups:write',
+            'im:history', 'im:read', 'im:write', 'mpim:history', 'mpim:read',
+            'mpim:write', 'pins:read', 'pins:write', 'reactions:read',
+            'reactions:write', 'reminders:read', 'reminders:write',
+            'search:read', 'stars:read', 'stars:write', 'team:read',
+            'usergroups:read', 'usergroups:write', 'users.profile:read',
+            'users.profile:write', 'users:read', 'users:write'],
         }
       )
     catch e
@@ -84,11 +93,12 @@ dataStore.get name, (err, data)->
       # console.log(user);
       # console.log(bot.config.incoming_webhook.token, bot.config.token);
       # console.log(bot.config.incoming_webhook.url)
+      set = if /^win/.test(process.platform) then "set" else "export"
       console.log("Slack App is successfully installed")
       console.log("Run hubot with the following environment variables:")
-      console.log("HUBOT_SLACK_TOKEN="+bot.config.bot.token)
-      console.log("SLACK_APP_TOKEN="+user.access_token)
-      
+      console.log(set+" HUBOT_SLACK_TOKEN="+bot.config.bot.token)
+      console.log(set+" SLACK_APP_TOKEN="+user.access_token)
+
       # dataStore.save name,{
       #   id: name,
       #   apiToken: user.access_token,

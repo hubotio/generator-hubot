@@ -3,7 +3,9 @@ chai = require 'chai'
 
 expect = chai.expect
 
-helper = new Helper(['../node_modules/hubot-enterprise/src/0_bootstrap.coffee', '../src/<%= scriptName %>.coffee'])
+helper = new Helper([
+  '../node_modules/hubot-enterprise/src/0_bootstrap.coffee',
+  '../src/<%= scriptName %>.coffee'])
 
 process.env.HUBOT_LOG_LEVEL='error'
 

@@ -2,49 +2,42 @@
   "name": "<%= appname %>",
   "description": "<%= scriptDescription %>",
   "version": "0.0.0",
-  "author": "<%= scriptOwner %>",
-  "license": "MIT",
-
   "keywords": "<%= scriptKeywords %>",
-
   "repository": {
     "type": "git",
     "url": "git://github.com/<%= orgName %>/<%= appname %>.git"
   },
-
   "bugs": {
     "url": "https://github.com/<%= orgName %>/<%= appname %>/issues"
   },
-
   "dependencies": {
+    "bluebird": "^3.3.4"
   },
-
   "peerDependencies": {
     "hubot": "2.x"
   },
-
   "devDependencies": {
     "hubot-test-helper": "github:eedevops/hubot-test-helper",
     "hubot-enterprise": "github:eedevops/hubot-enterprise",
     "chai": "^2.1.1",
     "coffee-script": "1.6.3",
-    "grunt": "^0.4.5",
-    "grunt-cli": "^0.1.13",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-mocha-test": "~0.12.7",
-    "grunt-release": "~0.11.0",
     "hubot": "2.x",
-    "matchdep": "~0.3.0",
-    "mocha": "^2.1.0",
-    "sinon": "^1.13.0",
-    "sinon-chai": "^2.7.0"
+    "jshint": "^2.9.2",
+    "coffeelint": "^1.15.7",
+    "jenkins-mocha": "^2.6.0"
   },
-
   "main": "index.coffee",
-
   "scripts": {
-    "test": "grunt test",
     "coffeelint": "coffeelint --reporter jslint -r . > coffee-lint.xml || true",
-    "jslint": "jshint --exclude-path .gitignore --reporter=jslint .> js-lint.xml || true"
-  }
+    "jslint": "jshint --exclude-path .gitignore --reporter=jslint .> js-lint.xml || true",
+    "test": "ARTIFACTS_DIR='./' COVERAGE_DIR='./' TEST_DIR='./test/' && jenkins-mocha --compilers \"coffee:coffee-script/register\" --check-leaks --no-coverage test/**/*.coffee || true",
+	"lint": "coffeelint -r .; jshint --exclude-path .gitignore . || true"
+  },
+  "coffeelintConfig": {
+    "max_line_length": {
+      "limitComments": false
+    }
+  },
+  "author": "<%= scriptOwner %>",
+  "license": "Apache-2.0"
 }

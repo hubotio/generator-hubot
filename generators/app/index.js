@@ -266,7 +266,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
     if (this.botAdapter != 'campfire') {
 	  // HACK: not installing slack from npm registry but from github
-	  var botAdapter = this.botAdapter == 'slack' ? 'slackhq/hubot-slack' : 'hubot-'+this.botAdapter;
+	  var botAdapter = this.botAdapter == 'slack' ? 'keke/hubot-slack' : 'hubot-'+this.botAdapter;
       packages.push(botAdapter);
     }
 

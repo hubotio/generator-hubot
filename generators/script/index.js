@@ -86,7 +86,7 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
 
       var prompts = [{
         name: 'scriptName',
-        message: 'Script name',
+        message: 'Script name (hubot- prefix ommited)',
         default: scriptName
       },
 	  {

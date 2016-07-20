@@ -31,7 +31,7 @@
     "coffeelint": "coffeelint --reporter jslint -r . > coffee-lint.xml || true",
     "jslint": "jshint --exclude-path .gitignore --reporter=jslint .> js-lint.xml || true",
     "test": "ARTIFACTS_DIR='./' COVERAGE_DIR='./' TEST_DIR='./test/' && jenkins-mocha --compilers \"coffee:coffee-script/register\" --check-leaks --no-coverage test/**/*.coffee || true",
-	"lint": "coffeelint -r .; jshint --exclude-path .gitignore . || true"
+    "lint": "coffeelint -r .; jshint --exclude-path .gitignore . || true"
   },
   "coffeelintConfig": {
     "max_line_length": {

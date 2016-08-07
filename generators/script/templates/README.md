@@ -17,13 +17,13 @@ Then add **<%= appname %>** to your `external-scripts.json`:
   "<%= appname %>"
 ]
 ```
+## Hubot-enterprise guide and info
 
-## Sample Interaction
+[hubot scripts Development](https://hubot.github.com/docs/scripting/)
 
-```
-user1>> hubot hello
-hubot>> hello!
-```
+[hubot-enterprise wiki](https://github.com/eedevops/hubot-enterprise/wiki)
+
+[hubot-enterprise scripts Development](https://github.com/eedevops/hubot-enterprise/wiki/api)
 
 ## NPM Module
 

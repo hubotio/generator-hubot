@@ -7,8 +7,6 @@ helper = new Helper([
   '../node_modules/hubot-enterprise/src/0_bootstrap.coffee',
   '../src/<%= scriptName %>.coffee'])
 
-process.env.HUBOT_LOG_LEVEL='error'
-
 describe '<%= scriptName %>', ->
   beforeEach ->
     @room = helper.createRoom()

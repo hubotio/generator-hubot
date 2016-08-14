@@ -252,7 +252,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
       this.copy('gitignore', '.gitignore');
       this.template('_package.json', 'package.json');
 
-      this.directory('scripts', 'scripts');
+      this.directory('enterprise_scripts', 'enterprise_scripts');
     },
 
     projectfiles: function () {

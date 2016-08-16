@@ -82,11 +82,17 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
     askForScriptNameAndDescription: function() {
       var done = this.async();
       var scriptName = extractScriptName(this._, this.appname);
+      var orgName = 'HPSoftware';
 
       var prompts = [{
         name: 'scriptName',
-        message: 'Script name',
+        message: 'Script name (hubot- prefix ommited)',
         default: scriptName
+      },
+	  {
+        name: 'orgName',
+        message: 'Github Organization name',
+        default: orgName
       },
       {
         name: 'scriptDescription',
@@ -103,6 +109,7 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
         this.scriptName = props.scriptName;
         this.scriptDescription = props.scriptDescription;
         this.scriptKeywords = props.scriptKeywords;
+		this.orgName = props.orgName;
         this.appname = 'hubot-' + this.scriptName;
 
         done();
@@ -118,13 +125,15 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
 
       this.mkdir('src');
       this.template('src/template.coffee', 'src/' + this.scriptName + '.coffee');
-
+	  
+	  this.mkdir('lib');
+	  
       this.mkdir('test');
       this.template('test/template-test.coffee', 'test/' + this.scriptName + '-test.coffee');
 
-      this.copy('Gruntfile.js', 'Gruntfile.js');
       this.copy('gitignore', '.gitignore');
-      this.copy('.travis.yml', '.travis.yml');
+	  this.copy('coffeelintignore', '.coffeelintignore');
+      this.copy('Jenkinsfile', 'Jenkinsfile');
       this.copy('index.coffee', 'index.coffee');
       this.template('_package.json', 'package.json');
       this.copy('README.md', 'README.md');

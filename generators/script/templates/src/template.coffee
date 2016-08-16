@@ -15,8 +15,19 @@
 #   <%= scriptOwner %>
 
 module.exports = (robot) ->
-  robot.respond /hello/, (res) ->
-    res.reply "hello!"
+  #check if hubot-enterprise is loaded
+  if not robot.e
+    robot.logger.error 'hubot-enterprise not present, <%= scriptName %> cannot run'
+    return
+  robot.logger.info '<%= scriptName %> initialized'
 
-  robot.hear /orly/, (res) ->
-    res.send "yarly"
+  #register some functions
+  robot.e.create {action: 'create',
+  help: 'create ticket', type: 'respond'}, (msg)->
+    robot.logger.debug  'in <%= scriptName %> create'
+    msg.reply 'in <%= scriptName %> create'
+
+  robot.e.create {action: 'update',
+  help: 'update ticket', type: 'hear'}, (msg)->
+    robot.logger.debug  'in <%= scriptName %> update'
+    msg.send 'in <%= scriptName %> update'

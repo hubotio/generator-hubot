@@ -151,7 +151,7 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
       this.template('_Dockerfile', 'Dockerfile');
       this.template('_docker-compose.yml', 'docker-compose.yml');
       this.copy('README.md', 'README.md');
-	  this.template('LICENSE', 'LICENSE');
+      this.template('LICENSE', 'LICENSE');
     },
 
     projectfiles: function () {

@@ -2,7 +2,7 @@
   "name": "generator-hubot-enterprise",
   "version": "0.0.1",
   "description": "Hubot Enterprise generator for Yeoman",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "main": "generators/app/index.js",
   "repository": "eedevops/generator-hubot-enterprise",
   "author": {

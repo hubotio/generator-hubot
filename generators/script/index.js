@@ -83,16 +83,27 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
       var done = this.async();
       var scriptName = extractScriptName(this._, this.appname);
       var orgName = 'HPSoftware';
-
+      var companyName = 'Hewlett-Packard Development Company, L.P.';
+      var yearName = new Date().getFullYear();
       var prompts = [{
         name: 'scriptName',
         message: 'Script name (hubot- prefix ommited)',
         default: scriptName
       },
-	  {
+	    {
         name: 'orgName',
         message: 'Github Organization name',
         default: orgName
+      },
+      {
+        name: 'companyName',
+        message: 'Company Full Name',
+        default: companyName
+      },
+      {
+        name: 'yearName',
+        message: 'Year (for LICENSE)',
+        default: yearName
       },
       {
         name: 'scriptDescription',
@@ -102,16 +113,19 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
       {
         name: 'scriptKeywords',
         message: 'Keywords',
-        default: 'hubot, hubot-scripts'
+        default: 'hubot, hubot-scripts, hubot-enterprise'
       }];
 
       this.prompt(prompts, function (props) {
         this.scriptName = props.scriptName;
         this.scriptDescription = props.scriptDescription;
         this.scriptKeywords = props.scriptKeywords;
-		this.orgName = props.orgName;
-        this.appname = 'hubot-' + this.scriptName;
-
+        this.orgName = props.orgName;
+        this.companyName = props.companyName;
+        // if user set script name to hubot- do not add hubot- prefix
+        this.appname = (!this.scriptName.startsWith('hubot-') ?
+          'hubot-' : '') + this.scriptName;
+        this.yearName = props.yearName;
         done();
       }.bind(this));
     },
@@ -125,17 +139,18 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
 
       this.mkdir('src');
       this.template('src/template.coffee', 'src/' + this.scriptName + '.coffee');
-	  
-	  this.mkdir('lib');
-	  
+
+      this.mkdir('lib');
+
       this.mkdir('test');
       this.template('test/template-test.coffee', 'test/' + this.scriptName + '-test.coffee');
 
       this.copy('gitignore', '.gitignore');
-	  this.copy('coffeelintignore', '.coffeelintignore');
+      this.copy('coffeelintignore', '.coffeelintignore');
       this.copy('Jenkinsfile', 'Jenkinsfile');
       this.copy('index.coffee', 'index.coffee');
       this.template('_package.json', 'package.json');
+      this.template('LICENSE', 'LICENSE');
       this.copy('README.md', 'README.md');
     },
 

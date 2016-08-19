@@ -1,6 +1,6 @@
 version: '2'
 services:
-  hubot-agm:
+  <%= appname %>:
     image: chatopshpe/hubot-enterprise
     volumes:
       - .:/integration

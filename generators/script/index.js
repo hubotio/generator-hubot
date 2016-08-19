@@ -125,9 +125,7 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
 
       this.mkdir('src');
       this.template('src/template.coffee', 'src/' + this.scriptName + '.coffee');
-	  
-	  this.mkdir('lib');
-	  
+
       this.mkdir('test');
       this.template('test/template-test.coffee', 'test/' + this.scriptName + '-test.coffee');
 
@@ -136,7 +134,6 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
       this.copy('Jenkinsfile', 'Jenkinsfile');
       this.copy('index.coffee', 'index.coffee');
       this.template('_package.json', 'package.json');
-      this.template('_Dockerfile', 'Dockerfile');
       this.template('_docker-compose.yml', 'docker-compose.yml');
       this.copy('README.md', 'README.md');
     },

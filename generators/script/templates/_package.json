@@ -17,7 +17,7 @@
     "hubot": "2.x"
   },
   "devDependencies": {
-    "hubot-test-helper": "github:eedevops/hubot-test-helper",
+    "hubot-test-helper": "1.5.0",
     "hubot-enterprise": "github:eedevops/hubot-enterprise",
     "chai": "^2.1.1",
     "coffee-script": "1.6.3",

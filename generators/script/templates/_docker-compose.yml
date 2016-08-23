@@ -1,6 +1,13 @@
 version: '2'
 services:
   <%= appname %>:
-    build: .
+    image: chatopshpe/hubot-enterprise
+    volumes:
+      - .:/integration
     environment:
       - HUBOT_SLACK_TOKEN=xoxb-0000000000-XXXXXXXXXXXXXXXXXXXXXX
+      - http_proxy=$http_proxy
+      - https_proxy=$https_proxy
+      - HTTP_PROXY=$HTTP_PROXY
+      - HTTPS_PROXY=$HTTPS_PROXY
+      - PKG_NAME=<%= appname %>

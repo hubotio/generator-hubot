@@ -1,5 +1,5 @@
 # Notes:
-#  Copyright <%= yearName %> <%= companyName %>
+#  Copyright 2016 Hewlett-Packard Development Company, L.P.
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a
 #  copy of this software and associated documentation files (the "Software"),
@@ -19,32 +19,33 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
-Helper = require('hubot-test-helper')
-chai = require 'chai'
+module.exports = (robot) ->
 
-expect = chai.expect
-
-helper = new Helper([
-  '../node_modules/hubot-enterprise/src/0_bootstrap.coffee',
-  '../src/<%= scriptName %>.coffee'])
-
-describe '<%= scriptName %>', ->
-  beforeEach ->
-    @room = helper.createRoom()
-
-  afterEach ->
-    @room.destroy()
-
-  it 'responds to <%= scriptName %> create', ->
-    @room.user.say('alice', '@hubot <%= scriptName %> create issue').then =>
-      expect(@room.messages).to.eql [
-        ['alice', '@hubot <%= scriptName %> create issue']
-        ['hubot', '@alice in <%= scriptName %> create']
-      ]
-
-  it 'hears <%= scriptName %> update', ->
-    @room.user.say('bob', '<%= scriptName %> update issue').then =>
-      expect(@room.messages).to.eql [
-        ['bob', '<%= scriptName %> update issue']
-        ['hubot', 'in <%= scriptName %> update']
-      ]
+  # #check if hubot-enterprise is loaded
+  # if not robot.e
+  #   robot.logger.error 'hubot-enterprise not present, cannot run'
+  #   return
+	#
+  # robot.logger.info 'hubot-test initialized'
+  #
+  # #register some functions
+  # robot.e.create {action: 'create',
+  # help: 'create ticket', type: 'respond',
+  # extra: '([0-9]+)([dDhHmMsS]) ?(.*)',}, (msg)->
+  #   robot.logger.debug  'in test create'
+  #   msg.reply 'in test create'
+  #
+  # robot.e.create {action: 'update',
+  # help: 'update ticket', type: 'hear'}, (msg)->
+  #   robot.logger.debug  'in test update'
+  #   msg.reply 'in test update'
+  #
+  # robot.e.create {product: 'test', action: 'read',
+  # help: 'read ticket', type: 'respond'}, (msg)->
+  #   robot.logger.debug  'in test read'
+  #   msg.reply 'in test read'
+  #
+  # robot.e.create {product: 'test', action: 'delete',
+  # help: 'delete ticket', type: 'respond'}, (msg)->
+  #   robot.logger.debug  'in test delete'
+  #   msg.reply 'in test delete'

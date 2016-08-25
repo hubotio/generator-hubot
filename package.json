@@ -1,14 +1,13 @@
 {
-  "name": "generator-hubot",
-  "version": "0.4.0",
-  "description": "Hubot generator for Yeoman",
+  "name": "generator-hubot-enterprise",
+  "version": "0.0.1",
+  "description": "Hubot Enterprise generator for Yeoman",
   "license": "MIT",
   "main": "generators/app/index.js",
-  "repository": "github/generator-hubot",
+  "repository": "eedevops/generator-hubot-enterprise",
   "author": {
-    "name": "Josh Nichols",
-    "email": "josh@technicalpickles.com",
-    "url": "https://github.com/technicalpickles"
+    "name": "Moshe Belostotsky",
+    "email": "moshe.belostotsky@hpe.com"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -21,7 +20,8 @@
   ],
   "keywords": [
     "yeoman-generator",
-    "hubot",
+	"hubot",
+    "hubot-enterprise",
     "hubot-script"
   ],
   "dependencies": {

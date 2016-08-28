@@ -73,9 +73,11 @@ var HubotGenerator = yeoman.generators.Base.extend({
     return this._.slugify(this.appname);
   },
 
+  // defaults
   defaultAdapter: 'slack',
   defaultDescription: 'A simple helpful robot for your Company',
   defaultRepo: 'hubot-scripts',
+  defaultHE: 'eedevops/hubot-enterprise',
 
 
   constructor: function () {
@@ -86,8 +88,8 @@ var HubotGenerator = yeoman.generators.Base.extend({
       desc: "Name and email of the owner of new bot (ie Example <user@example.com>)",
       type: String
     });
-	
-	
+
+
     this.option('name', {
       desc: "Name of new bot",
       type: String
@@ -108,13 +110,22 @@ var HubotGenerator = yeoman.generators.Base.extend({
       type: Boolean
     });
 
+    // to enable install HE from location on disk instead of web
+    // default is from web
+    this.option('location', {
+      desc: "hubot-enterprise location to install from",
+      type: Boolean,
+      defaults: this.defaultHE,
+      hide: true
+    });
+
     if (this.options.defaults) {
       this.options.owner = this.options.owner || this.determineDefaultOwner();
       this.options.name = this.options.name || this.determineDefaultName();
       this.options.adapter = this.options.adapter || this.defaultAdapter;
       this.options.description = this.options.description || this.defaultDescription;
     }
-	
+
     if (this.options.owner == true) {
       this.env.error("Missing owner. Make sure to specify it like --owner=\"<owner>\"");
     }
@@ -261,7 +272,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
   },
 
   end: function () {
-    var packages = ['hubot', 'hubot-scripts', 'eedevops/hubot-enterprise', 'botkit', 'querystring', 'jfs'];
+    var packages = ['hubot', 'hubot-scripts', this.options.location, 'botkit', 'querystring', 'jfs'];
     packages = packages.concat(this.externalScripts);
 
     if (this.botAdapter != 'campfire') {

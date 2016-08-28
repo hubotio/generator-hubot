@@ -1,0 +1,6 @@
+version: '2'
+services:
+  <%= appname %>:
+    build: .
+    environment:
+      - HUBOT_SLACK_TOKEN=xoxb-0000000000-XXXXXXXXXXXXXXXXXXXXXX

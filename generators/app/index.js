@@ -73,8 +73,11 @@ var HubotGenerator = yeoman.generators.Base.extend({
     return this._.slugify(this.appname);
   },
 
-  defaultAdapter: 'campfire',
+  // defaults
+  defaultAdapter: 'slack',
   defaultDescription: 'A simple helpful robot for your Company',
+  defaultRepo: 'hubot-scripts',
+  defaultHE: 'eedevops/hubot-enterprise',
 
 
   constructor: function () {
@@ -85,6 +88,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
       desc: "Name and email of the owner of new bot (ie Example <user@example.com>)",
       type: String
     });
+
 
     this.option('name', {
       desc: "Name of new bot",
@@ -104,6 +108,15 @@ var HubotGenerator = yeoman.generators.Base.extend({
     this.option('defaults', {
       desc: "Accept defaults and don't prompt for user input",
       type: Boolean
+    });
+
+    // to enable install HE from location on disk instead of web
+    // default is from web
+    this.option('location', {
+      desc: "hubot-enterprise location to install from",
+      type: Boolean,
+      defaults: this.defaultHE,
+      hide: true
     });
 
     if (this.options.defaults) {
@@ -136,14 +149,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
     this.externalScripts = [
       'hubot-diagnostics',
       'hubot-help',
-      'hubot-heroku-keepalive',
-      'hubot-google-images',
-      'hubot-google-translate',
-      'hubot-pugme',
-      'hubot-maps',
       'hubot-redis-brain',
-      'hubot-rules',
-      'hubot-shipit'
     ];
 
     this.hubotScripts = [
@@ -215,7 +221,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
           validate: function (botAdapter) {
             var done = this.async();
 
-            if (botAdapter == 'campfire') {
+            if (botAdapter == 'slack') {
               done(null, true);
               return
             }
@@ -249,14 +255,15 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
       this.template('Procfile', 'Procfile');
       this.template('README.md', 'README.md');
+	  this.template('install-slackapp.coffee', 'install-slackapp.coffee');
 
-      this.write('external-scripts.json', JSON.stringify(this.externalScripts, undefined, 2));
-      this.write('hubot-scripts.json', JSON.stringify(this.hubotScripts, undefined, 2));
+	  // HACK: not installing hubot-enterprise from npm registry
+      this.write('external-scripts.json', JSON.stringify(['hubot-enterprise'].concat(this.externalScripts), undefined, 2));
 
       this.copy('gitignore', '.gitignore');
       this.template('_package.json', 'package.json');
 
-      this.directory('scripts', 'scripts');
+      this.directory('enterprise_scripts', 'enterprise_scripts');
     },
 
     projectfiles: function () {
@@ -265,11 +272,13 @@ var HubotGenerator = yeoman.generators.Base.extend({
   },
 
   end: function () {
-    var packages = ['hubot', 'hubot-scripts'];
+    var packages = ['hubot', 'hubot-scripts', this.options.location, 'botkit', 'querystring', 'jfs'];
     packages = packages.concat(this.externalScripts);
 
     if (this.botAdapter != 'campfire') {
-      packages.push('hubot-' + this.botAdapter);
+	  // HACK: not installing slack from npm registry but from github
+	  var botAdapter = this.botAdapter == 'slack' ? 'hubot-slack@4.0.1' : 'hubot-'+this.botAdapter;
+      packages.push(botAdapter);
     }
 
     this.npmInstall(packages, {'save': true});

@@ -5,9 +5,12 @@ services:
     volumes:
       - .:/integration
     environment:
+      - ADAPTER=slack
+      - HUBOT_APP_TOKEN=xoxb-000000000-XXXXXXXXXXXXXXXXXX
       - HUBOT_SLACK_TOKEN=xoxb-0000000000-XXXXXXXXXXXXXXXXXXXXXX
       - http_proxy=$http_proxy
       - https_proxy=$https_proxy
+      - no_proxy=$no_proxy
       - HTTP_PROXY=$HTTP_PROXY
       - HTTPS_PROXY=$HTTPS_PROXY
-      - PKG_NAME=<%= appname %>
+      - NO_PROXY=$NO_PROXY

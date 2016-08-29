@@ -272,7 +272,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
   },
 
   end: function () {
-    var packages = ['hubot', 'hubot-scripts', this.options.location, 'botkit', 'querystring', 'jfs'];
+    var packages = ['hubot', 'hubot-scripts', this.options.location, 'botkit', 'querystring', 'jfs', 'underscore'];
     packages = packages.concat(this.externalScripts);
 
     if (this.botAdapter != 'campfire') {

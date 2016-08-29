@@ -27,12 +27,12 @@ module.exports = (robot) ->
   robot.logger.info '<%= scriptName %> initialized'
 
   #register some functions
-  robot.e.create {action: 'create',
+  robot.e.create {verb: 'create', entity: 'ticket',
   help: 'create ticket', type: 'respond'}, (msg)->
-    robot.logger.debug  'in <%= scriptName %> create'
-    msg.reply 'in <%= scriptName %> create'
+    robot.logger.debug  'in <%= scriptName %> create ticket'
+    msg.reply 'in <%= scriptName %> create ticket'
 
-  robot.e.create {action: 'update',
+  robot.e.create {verb: 'update', entity: 'ticket',
   help: 'update ticket', type: 'hear'}, (msg)->
-    robot.logger.debug  'in <%= scriptName %> update'
-    msg.send 'in <%= scriptName %> update'
+    robot.logger.debug  'in <%= scriptName %> update ticket'
+    msg.send 'in <%= scriptName %> update ticket'

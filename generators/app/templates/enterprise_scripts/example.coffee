@@ -29,23 +29,23 @@ module.exports = (robot) ->
   # robot.logger.info 'hubot-test initialized'
   #
   # #register some functions
-  # robot.e.create {action: 'create',
+  # robot.e.create {verb: 'create', entity: 'ticket',
   # help: 'create ticket', type: 'respond',
   # extra: '([0-9]+)([dDhHmMsS]) ?(.*)',}, (msg)->
-  #   robot.logger.debug  'in test create'
-  #   msg.reply 'in test create'
+  #   robot.logger.debug  'in create ticket'
+  #   msg.reply 'in create ticket'
   #
-  # robot.e.create {action: 'update',
+  # robot.e.create {verb: 'update', entity: 'ticket',
   # help: 'update ticket', type: 'hear'}, (msg)->
-  #   robot.logger.debug  'in test update'
-  #   msg.reply 'in test update'
+  #   robot.logger.debug  'in test update ticket'
+  #   msg.reply 'in test update ticket'
   #
-  # robot.e.create {product: 'test', action: 'read',
+  # robot.e.create {product: 'test', verb: 'read', entity: 'ticket',
   # help: 'read ticket', type: 'respond'}, (msg)->
-  #   robot.logger.debug  'in test read'
-  #   msg.reply 'in test read'
+  #   robot.logger.debug  'in test read ticket'
+  #   msg.reply 'in test read ticket'
   #
-  # robot.e.create {product: 'test', action: 'delete',
+  # robot.e.create {product: 'test', verb: 'delete', entity: 'ticket',
   # help: 'delete ticket', type: 'respond'}, (msg)->
-  #   robot.logger.debug  'in test delete'
-  #   msg.reply 'in test delete'
+  #   robot.logger.debug  'in test delete ticket'
+  #   msg.reply 'in test delete ticket'

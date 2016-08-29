@@ -36,15 +36,15 @@ describe '<%= scriptName %>', ->
     @room.destroy()
 
   it 'responds to <%= scriptName %> create', ->
-    @room.user.say('alice', '@hubot <%= scriptName %> create issue').then =>
+    @room.user.say('alice', '@hubot <%= scriptName %> create ticket').then =>
       expect(@room.messages).to.eql [
-        ['alice', '@hubot <%= scriptName %> create issue']
-        ['hubot', '@alice in <%= scriptName %> create']
+        ['alice', '@hubot <%= scriptName %> create ticket']
+        ['hubot', '@alice in <%= scriptName %> create ticket']
       ]
 
   it 'hears <%= scriptName %> update', ->
-    @room.user.say('bob', '<%= scriptName %> update issue').then =>
+    @room.user.say('bob', '<%= scriptName %> update ticket').then =>
       expect(@room.messages).to.eql [
-        ['bob', '<%= scriptName %> update issue']
-        ['hubot', 'in <%= scriptName %> update']
+        ['bob', '<%= scriptName %> update ticket']
+        ['hubot', 'in <%= scriptName %> update ticket']
       ]

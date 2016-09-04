@@ -40,7 +40,7 @@ var hubotEndSay = function() {
           '          '+chalk.yellow('\\____/    |   |')+'                            ' + "\n" +
           '           '+chalk.cyan('| //|')+'    '+chalk.yellow('+===+')+'                            ' + "\n" +
           '            '+chalk.cyan('\\//')+'      |xx|                            ' +
-          "\n";
+          "\n\nPlease Update README.md\n";
 };
 
 var extractScriptName = function (_, appname) {
@@ -83,6 +83,7 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
       var done = this.async();
       var scriptName = extractScriptName(this._, this.appname);
       var orgName = 'HPSoftware';
+      var dockerName = 'chatopshpe';
       var companyName = 'Hewlett-Packard Development Company, L.P.';
       var yearName = new Date().getFullYear();
       var prompts = [{
@@ -90,10 +91,15 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
         message: 'Script name (hubot- prefix ommited)',
         default: scriptName
       },
-	    {
+        {
         name: 'orgName',
         message: 'Github Organization name',
         default: orgName
+      },
+      {
+        name: 'dockerName',
+        message: 'DockerHub organization name',
+        default: dockerName        
       },
       {
         name: 'companyName',
@@ -121,6 +127,7 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
         this.scriptDescription = props.scriptDescription;
         this.scriptKeywords = props.scriptKeywords;
         this.orgName = props.orgName;
+        this.dockerName = props.dockerName;
         this.companyName = props.companyName;
         // if user set script name to hubot- do not add hubot- prefix
         this.appname = (!this.scriptName.startsWith('hubot-') ?
@@ -149,7 +156,8 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
       this.copy('index.coffee', 'index.coffee');
       this.template('_package.json', 'package.json');
       this.template('_docker-compose.yml', 'docker-compose.yml');
-      this.copy('README.md', 'README.md');
+      this.template('_Dockerfile', 'Dockerfile');
+      this.template('README.md', 'README.md');
       this.template('LICENSE', 'LICENSE');
     },
 

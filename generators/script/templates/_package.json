@@ -28,7 +28,7 @@
     "chai": "^2.1.1",
     "coffee-script": "1.6.3",
     "grunt": "^1.0.1",
-    "grunt-cli": "^0.1.13",
+    "grunt-cli": "^1.2.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-mocha-test": "~0.12.7",
     "grunt-release": "~0.14.0",

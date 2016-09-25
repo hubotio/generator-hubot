@@ -26,6 +26,11 @@ module.exports = (robot) ->
     return
   robot.logger.info '<%= scriptName %> initialized'
 
+  # register integration
+  robot.e.registerIntegration {name: '<%= scriptName %>',
+  short_desc: 'what this integration does',
+  long_desc: 'how this integration does it'}
+  
   #register some functions
   robot.e.create {verb: 'create', entity: 'ticket',
   help: 'create ticket', type: 'respond'}, (msg)->

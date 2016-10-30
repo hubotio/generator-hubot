@@ -6,6 +6,9 @@ dataStore = new Store('data', {saveId: 'id'})
 clientId= process.argv[2]
 cs= process.argv[3]
 name = process.argv[4]
+# exit on sigint (good for docker)
+process.on 'SIGINT', ->
+  process.exit()
 # console.log clientId, cs, name
 if not name
   console.log "Please specify a name"
@@ -98,6 +101,7 @@ dataStore.get name, (err, data)->
       console.log("Run hubot with the following environment variables:")
       console.log(set+" HUBOT_SLACK_TOKEN="+bot.config.bot.token)
       console.log(set+" SLACK_APP_TOKEN="+user.access_token)
+      process.exit()
 
       # dataStore.save name,{
       #   id: name,

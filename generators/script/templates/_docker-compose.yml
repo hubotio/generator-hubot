@@ -7,7 +7,7 @@ services:
     environment:
       - HUBOT_LOG_LEVEL=debug
       - ADAPTER=slack
-      - HUBOT_APP_TOKEN=xoxb-000000000-XXXXXXXXXXXXXXXXXX
+      - SLACK_APP_TOKEN=xoxb-000000000-XXXXXXXXXXXXXXXXXX
       - HUBOT_SLACK_TOKEN=xoxb-0000000000-XXXXXXXXXXXXXXXXXXXXXX
       - ftp_proxy=$ftp_proxy
       - http_proxy=$http_proxy

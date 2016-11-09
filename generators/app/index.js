@@ -5,6 +5,7 @@ var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var chalk = require('chalk');
 var npmName = require('npm-name');
+var url = require('url');
 
 var hubotStartSay = function() {
   return  '                     _____________________________  ' + "\n" +
@@ -240,17 +241,17 @@ var HubotGenerator = yeoman.generators.Base.extend({
             try {
               console.log(botIntegrations);
               if(botIntegrations!="") {
-
                 console.log("Integrations entered:");
                 botIntegrations.split(",").forEach(function (element, index, array) {
-                  if (element.indexOf("https:") < 0 && element.indexOf("ssh:") < 0) {
-                    console.log("hubot-" + element);
+
+                  if (!element.includes("https:") && !element.includes("ssh:")) {
+                    console.log(element);
                   } else {
                     var protocol = element.substr(0, element.indexOf("://") + 3);
                     var baseUrl = element.substr(element.indexOf("://") + 3);
                     var link = "git+" + protocol + "git@" + baseUrl;
-
                     var integrationFull = element.substr(element.lastIndexOf("/") + 1).replace(".git","");
+
                     console.log("Integration: " + integrationFull);
                     console.log("Repo url: " + link);
                   }
@@ -273,24 +274,28 @@ var HubotGenerator = yeoman.generators.Base.extend({
         if(integrationsStr==null)
           done();
 
+
         var integrationsStrArray = integrationsStr.split(",");
         this.integrations = [];
         this.integrationsScripts = [];
-
+        var thiz = this;
         //TODO: eliminate duplicate code
         for(var i=0;i<integrationsStrArray.length;i++){
           var element = integrationsStrArray[i];
-          if (element.indexOf("https:") < 0 && element.indexOf("ssh:") < 0) {
-            this.integrationsScripts.push("hubot-" + element);
-            this.integrations.push("hubot-" + element);
+          if(element=="") continue;
+
+          if (!element.includes("https:") && !element.includes("ssh:")) {
+            thiz.integrationsScripts.push(path
+              .basename(url.parse(element).pathname).replace(/@.*/, ''));
+            thiz.integrations.push(element);
           } else {
             var protocol = element.substr(0, element.indexOf("://") + 3);
             var baseUrl = element.substr(element.indexOf("://") + 3);
             var link = "git+" + protocol + "git@" + baseUrl;
             var integrationFull = element.substr(element.lastIndexOf("/") + 1).replace(".git","");
 
-            this.integrations.push(link);
-            this.integrationsScripts.push(integrationFull);
+            thiz.integrations.push(link);
+            thiz.integrationsScripts.push(integrationFull);
           }
         }
 
@@ -378,7 +383,8 @@ var HubotGenerator = yeoman.generators.Base.extend({
 
     //first make npm install to bring all integrations, then scan for environment varibale configurations
     this.npmInstall(packages, {'save': true},function () {
-      if(this.generateConfigs) {
+      console.log("Generate config = " + this.options.generateConfigs);
+      if(this.options.generateConfigs) {
         this.spawnCommand("./node_modules/.bin/hubot-config-generator");
       }
     }.bind(this));

@@ -6,42 +6,41 @@ var yosay = require('yosay');
 var chalk = require('chalk');
 var npmName = require('npm-name');
 
-
 var hubotStartSay = function() {
   return  '                     _____________________________  ' + "\n" +
-          '                    /                             \\ ' + "\n" +
-          ' '+chalk.cyan('  //\\')+'              |      Extracting input for    |' + "\n" +
-          ' '+chalk.cyan(' ////\\  ')+'  '+chalk.yellow('_____')+'    |   self-replication process   |' + "\n" +
-          ' '+chalk.cyan('//////\\  ')+chalk.yellow('/')+chalk.cyan('_____')+chalk.yellow('\\')+'   \\                             / ' + "\n" +
-          ' '+chalk.cyan('=======') + chalk.yellow(' |')+chalk.cyan('[^_/\\_]')+chalk.yellow('|')+'   /----------------------------  ' + "\n" +
-          '  '+chalk.yellow('|   | _|___')+'@@'+chalk.yellow('__|__')+'                                ' + "\n" +
-          '  '+chalk.yellow('+===+/  ///     ')+chalk.cyan('\\_\\')+'                               ' + "\n" +
-          '   '+chalk.cyan('| |_')+chalk.yellow('\\ /// HUBOT/')+chalk.cyan('\\\\')+'                             ' + "\n" +
-          '   '+chalk.cyan('|___/')+chalk.yellow('\\//      /')+chalk.cyan('  \\\\')+'                            ' + "\n" +
-          '         '+chalk.yellow('\\      /   +---+')+'                            ' + "\n" +
-          '          '+chalk.yellow('\\____/    |   |')+'                            ' + "\n" +
-          '           '+chalk.cyan('| //|')+'    '+chalk.yellow('+===+')+'                            ' + "\n" +
-          '            '+chalk.cyan('\\//')+'      |xx|                            ' +
-          "\n";
+    '                    /                             \\ ' + "\n" +
+    ' '+chalk.cyan('  //\\')+'              |      Extracting input for    |' + "\n" +
+    ' '+chalk.cyan(' ////\\  ')+'  '+chalk.yellow('_____')+'    |   self-replication process   |' + "\n" +
+    ' '+chalk.cyan('//////\\  ')+chalk.yellow('/')+chalk.cyan('_____')+chalk.yellow('\\')+'   \\                             / ' + "\n" +
+    ' '+chalk.cyan('=======') + chalk.yellow(' |')+chalk.cyan('[^_/\\_]')+chalk.yellow('|')+'   /----------------------------  ' + "\n" +
+    '  '+chalk.yellow('|   | _|___')+'@@'+chalk.yellow('__|__')+'                                ' + "\n" +
+    '  '+chalk.yellow('+===+/  ///     ')+chalk.cyan('\\_\\')+'                               ' + "\n" +
+    '   '+chalk.cyan('| |_')+chalk.yellow('\\ /// HUBOT/')+chalk.cyan('\\\\')+'                             ' + "\n" +
+    '   '+chalk.cyan('|___/')+chalk.yellow('\\//      /')+chalk.cyan('  \\\\')+'                            ' + "\n" +
+    '         '+chalk.yellow('\\      /   +---+')+'                            ' + "\n" +
+    '          '+chalk.yellow('\\____/    |   |')+'                            ' + "\n" +
+    '           '+chalk.cyan('| //|')+'    '+chalk.yellow('+===+')+'                            ' + "\n" +
+    '            '+chalk.cyan('\\//')+'      |xx|                            ' +
+    "\n";
 
 };
 
 var hubotEndSay = function() {
   return  '                     _____________________________  ' + "\n" +
-          ' _____              /                             \\ ' + "\n" +
-          ' \\    \\             |   Self-replication process   |' + "\n" +
-          ' |    |    '+chalk.yellow('_____')+'    |          complete...         |' + "\n" +
-          ' |__'+chalk.cyan('\\\\')+'|   '+chalk.yellow('/')+chalk.cyan('_____')+chalk.yellow('\\')+'   \\     Good luck with that.    / ' + "\n" +
-          '   '+chalk.cyan('|//') + chalk.yellow('+  |')+chalk.cyan('[^_/\\_]')+chalk.yellow('|')+'   /----------------------------  ' + "\n" +
-          '  '+chalk.yellow('|   | _|___')+'@@'+chalk.yellow('__|__')+'                                ' + "\n" +
-          '  '+chalk.yellow('+===+/  ///     ')+chalk.cyan('\\_\\')+'                               ' + "\n" +
-          '   '+chalk.cyan('| |_')+chalk.yellow('\\ /// HUBOT/')+chalk.cyan('\\\\')+'                             ' + "\n" +
-          '   '+chalk.cyan('|___/')+chalk.yellow('\\//      /')+chalk.cyan('  \\\\')+'                            ' + "\n" +
-          '         '+chalk.yellow('\\      /   +---+')+'                            ' + "\n" +
-          '          '+chalk.yellow('\\____/    |   |')+'                            ' + "\n" +
-          '           '+chalk.cyan('| //|')+'    '+chalk.yellow('+===+')+'                            ' + "\n" +
-          '            '+chalk.cyan('\\//')+'      |xx|                            ' +
-          "\n";
+    ' _____              /                             \\ ' + "\n" +
+    ' \\    \\             |   Self-replication process   |' + "\n" +
+    ' |    |    '+chalk.yellow('_____')+'    |          complete...         |' + "\n" +
+    ' |__'+chalk.cyan('\\\\')+'|   '+chalk.yellow('/')+chalk.cyan('_____')+chalk.yellow('\\')+'   \\     Good luck with that.    / ' + "\n" +
+    '   '+chalk.cyan('|//') + chalk.yellow('+  |')+chalk.cyan('[^_/\\_]')+chalk.yellow('|')+'   /----------------------------  ' + "\n" +
+    '  '+chalk.yellow('|   | _|___')+'@@'+chalk.yellow('__|__')+'                                ' + "\n" +
+    '  '+chalk.yellow('+===+/  ///     ')+chalk.cyan('\\_\\')+'                               ' + "\n" +
+    '   '+chalk.cyan('| |_')+chalk.yellow('\\ /// HUBOT/')+chalk.cyan('\\\\')+'                             ' + "\n" +
+    '   '+chalk.cyan('|___/')+chalk.yellow('\\//      /')+chalk.cyan('  \\\\')+'                            ' + "\n" +
+    '         '+chalk.yellow('\\      /   +---+')+'                            ' + "\n" +
+    '          '+chalk.yellow('\\____/    |   |')+'                            ' + "\n" +
+    '           '+chalk.cyan('| //|')+'    '+chalk.yellow('+===+')+'                            ' + "\n" +
+    '            '+chalk.cyan('\\//')+'      |xx|                            ' +
+    "\n";
 };
 
 var HubotGenerator = yeoman.generators.Base.extend({
@@ -78,7 +77,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
   defaultDescription: 'A simple helpful robot for your Company',
   defaultRepo: 'hubot-scripts',
   defaultHE: 'eedevops/hubot-enterprise',
-
+  defaultIntegrations: null,
 
   constructor: function () {
     yeoman.generators.Base.apply(this, arguments);
@@ -110,6 +109,18 @@ var HubotGenerator = yeoman.generators.Base.extend({
       type: Boolean
     });
 
+    this.option('generateConfigs', {
+      desc: "Scan all integrations configured in external-scripts.json for environment variables configuration",
+      type: Boolean,
+      defaults: true
+    });
+
+    this.option('integrations', {
+      desc: "Integrations for hubot, npm package name or github url or location on disk sperated by commas",
+      type: String,
+      defaults: ""
+    });
+
     // to enable installing HE from location on disk instead of web
     // default is from web
     this.option('location', {
@@ -119,11 +130,16 @@ var HubotGenerator = yeoman.generators.Base.extend({
       hide: true
     });
 
+    this.log("Default integrations : " + this.options.integrations);
+
     if (this.options.defaults) {
       this.options.owner = this.options.owner || this.determineDefaultOwner();
       this.options.name = this.options.name || this.determineDefaultName();
       this.options.adapter = this.options.adapter || this.defaultAdapter;
       this.options.description = this.options.description || this.defaultDescription;
+      //TODO: FIX accept integrations from arguments
+      this.options.integrations = this.option.integrations!="" ? this.option.integrations : this.defaultIntegrations;
+      this.options.generateConfigs = false;
     }
 
     if (this.options.owner == true) {
@@ -208,6 +224,81 @@ var HubotGenerator = yeoman.generators.Base.extend({
       }.bind(this));
     },
 
+    askForBotIntegrations: function() {
+      var done = this.async();
+      var prompts = [];
+
+      // FIXME validate argument like we do when prompting
+      if (this.options.integrations!=null) {
+        prompts.push({
+          name: 'botIntegrations',
+          //TODO: provide suggestions?
+          message: 'Bot Integrations (npm name or github url or path from local disk, separated by commas)',
+          default: "",
+          validate: function (botIntegrations) {
+            var done = this.async();
+            try {
+              console.log(botIntegrations);
+              if(botIntegrations!="") {
+
+                console.log("Integrations entered:");
+                botIntegrations.split(",").forEach(function (element, index, array) {
+                  if (element.indexOf("https:") < 0 && element.indexOf("ssh:") < 0) {
+                    console.log("hubot-" + element);
+                  } else {
+                    var protocol = element.substr(0, element.indexOf("://") + 3);
+                    var baseUrl = element.substr(element.indexOf("://") + 3);
+                    var link = "git+" + protocol + "git@" + baseUrl;
+
+                    var integrationFull = element.substr(element.lastIndexOf("/") + 1).replace(".git","");
+                    console.log("Integration: " + integrationFull);
+                    console.log("Repo url: " + link);
+                  }
+                });
+              }
+
+              done(null,true);
+            }catch (e){
+              console.log(e);
+              done("Can't parse integrations input, try again?");
+            }
+          }
+        });
+      }
+
+      this.prompt(prompts, function (props) {
+        console.log("props : " + JSON.stringify(props));
+        var integrationsStr = this.options.integrations || props.botIntegrations;
+
+        if(integrationsStr==null)
+          done();
+
+        var integrationsStrArray = integrationsStr.split(",");
+        this.integrations = [];
+        this.integrationsScripts = [];
+
+        //TODO: eliminate duplicate code
+        for(var i=0;i<integrationsStrArray.length;i++){
+          var element = integrationsStrArray[i];
+          if (element.indexOf("https:") < 0 && element.indexOf("ssh:") < 0) {
+            this.integrationsScripts.push("hubot-" + element);
+            this.integrations.push("hubot-" + element);
+          } else {
+            var protocol = element.substr(0, element.indexOf("://") + 3);
+            var baseUrl = element.substr(element.indexOf("://") + 3);
+            var link = "git+" + protocol + "git@" + baseUrl;
+            var integrationFull = element.substr(element.lastIndexOf("/") + 1).replace(".git","");
+
+            this.integrations.push(link);
+            this.integrationsScripts.push(integrationFull);
+          }
+        }
+
+        done();
+      }.bind(this));
+
+    },
+
     askForBotAdapter: function() {
       var done = this.async();
 
@@ -250,6 +341,7 @@ var HubotGenerator = yeoman.generators.Base.extend({
   writing: {
     app: function () {
       this.mkdir('bin');
+      this.mkdir('configs');
       this.copy('bin/hubot', 'bin/hubot');
       this.copy('bin/hubot.cmd', 'bin/hubot.cmd');
 
@@ -258,10 +350,12 @@ var HubotGenerator = yeoman.generators.Base.extend({
       this.template('install-slackapp.coffee', 'install-slackapp.coffee');
 
       // HACK: not installing hubot-enterprise from npm registry
-      this.write('external-scripts.json', JSON.stringify(['hubot-enterprise'].concat(this.externalScripts), undefined, 2));
+      this.write('external-scripts.json', JSON.stringify(['hubot-enterprise'].concat(this.integrationsScripts).concat(this.externalScripts), undefined, 2));
 
       this.copy('gitignore', '.gitignore');
       this.template('_package.json', 'package.json');
+      this.template('_runhubot.bat','runhubot.bat');
+      this.template('_runhubot.sh','runhubot.sh');
 
       this.directory('enterprise_scripts', 'enterprise_scripts');
     },
@@ -272,8 +366,9 @@ var HubotGenerator = yeoman.generators.Base.extend({
   },
 
   end: function () {
-    var packages = ['hubot', 'hubot-scripts', this.options.location, 'botkit', 'querystring', 'jfs', 'underscore'];
+    var packages = ['hubot', 'hubot-scripts', this.options.location, 'botkit', 'querystring', 'jfs', 'underscore','hubot-runner','hubot-config-generator'];
     packages = packages.concat(this.externalScripts);
+    packages = packages.concat(this.integrations);
 
     if (this.botAdapter != 'campfire') {
       // HACK: not installing slack from npm registry but from github
@@ -281,7 +376,12 @@ var HubotGenerator = yeoman.generators.Base.extend({
       packages.push(botAdapter);
     }
 
-    this.npmInstall(packages, {'save': true});
+    //first make npm install to bring all integrations, then scan for environment varibale configurations
+    this.npmInstall(packages, {'save': true},function () {
+      if(this.generateConfigs) {
+        this.spawnCommand("./node_modules/.bin/hubot-config-generator");
+      }
+    }.bind(this));
 
     this.log(hubotEndSay());
 

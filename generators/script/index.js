@@ -40,7 +40,7 @@ var hubotEndSay = function() {
           '          '+chalk.yellow('\\____/    |   |')+'                            ' + "\n" +
           '           '+chalk.cyan('| //|')+'    '+chalk.yellow('+===+')+'                            ' + "\n" +
           '            '+chalk.cyan('\\//')+'      |xx|                            ' +
-          "\n";
+          "\n\nPlease Update README.md\n";
 };
 
 var extractScriptName = function (_, appname) {
@@ -82,11 +82,34 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
     askForScriptNameAndDescription: function() {
       var done = this.async();
       var scriptName = extractScriptName(this._, this.appname);
-
+      var orgName = 'HPSoftware';
+      var dockerName = 'chatopshpe';
+      var companyName = 'Hewlett-Packard Development Company, L.P.';
+      var yearName = new Date().getFullYear();
       var prompts = [{
         name: 'scriptName',
-        message: 'Script name',
+        message: 'Script name (hubot- prefix ommited)',
         default: scriptName
+      },
+        {
+        name: 'orgName',
+        message: 'Github Organization name',
+        default: orgName
+      },
+      {
+        name: 'dockerName',
+        message: 'DockerHub organization name',
+        default: dockerName        
+      },
+      {
+        name: 'companyName',
+        message: 'Company Full Name',
+        default: companyName
+      },
+      {
+        name: 'yearName',
+        message: 'Year (for LICENSE)',
+        default: yearName
       },
       {
         name: 'scriptDescription',
@@ -96,15 +119,20 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
       {
         name: 'scriptKeywords',
         message: 'Keywords',
-        default: 'hubot, hubot-scripts'
+        default: 'hubot, hubot-scripts, hubot-enterprise'
       }];
 
       this.prompt(prompts, function (props) {
         this.scriptName = props.scriptName;
         this.scriptDescription = props.scriptDescription;
         this.scriptKeywords = props.scriptKeywords;
-        this.appname = 'hubot-' + this.scriptName;
-
+        this.orgName = props.orgName;
+        this.dockerName = props.dockerName;
+        this.companyName = props.companyName;
+        // if user set script name to hubot- do not add hubot- prefix
+        this.appname = (!this.scriptName.startsWith('hubot-') ?
+          'hubot-' : '') + this.scriptName;
+        this.yearName = props.yearName;
         done();
       }.bind(this));
     },
@@ -122,12 +150,15 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
       this.mkdir('test');
       this.template('test/template-test.coffee', 'test/' + this.scriptName + '-test.coffee');
 
-      this.copy('Gruntfile.js', 'Gruntfile.js');
       this.copy('gitignore', '.gitignore');
-      this.copy('.travis.yml', '.travis.yml');
+      this.copy('coffeelintignore', '.coffeelintignore');
+      this.copy('Jenkinsfile', 'Jenkinsfile');
       this.copy('index.coffee', 'index.coffee');
       this.template('_package.json', 'package.json');
-      this.copy('README.md', 'README.md');
+      this.template('_docker-compose.yml', 'docker-compose.yml');
+      this.template('_Dockerfile', 'Dockerfile');
+      this.template('README.md', 'README.md');
+      this.template('LICENSE', 'LICENSE');
     },
 
     projectfiles: function () {

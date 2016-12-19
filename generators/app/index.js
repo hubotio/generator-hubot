@@ -282,20 +282,19 @@ var HubotGenerator = yeoman.generators.Base.extend({
         //TODO: eliminate duplicate code
         for(var i=0;i<integrationsStrArray.length;i++){
           var element = integrationsStrArray[i];
-          if(element=="") continue;
+          if(element==="") continue;
 
           if (!element.includes("https:") && !element.includes("ssh:")) {
-            thiz.integrationsScripts.push(path
+            this.integrationsScripts.push(path
               .basename(url.parse(element).pathname).replace(/@.*/, ''));
-            thiz.integrations.push(element);
+            this.integrations.push(element);
           } else {
             var protocol = element.substr(0, element.indexOf("://") + 3);
             var baseUrl = element.substr(element.indexOf("://") + 3);
             var link = "git+" + protocol + "git@" + baseUrl;
             var integrationFull = element.substr(element.lastIndexOf("/") + 1).replace(".git","");
 
-            thiz.integrations.push(link);
-            thiz.integrationsScripts.push(integrationFull);
+            this.integrations.push(link);
           }
         }
 

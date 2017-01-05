@@ -271,8 +271,9 @@ var HubotGenerator = yeoman.generators.Base.extend({
         console.log("props : " + JSON.stringify(props));
         var integrationsStr = this.options.integrations || props.botIntegrations;
 
-        if(integrationsStr==null)
-          done();
+        if(integrationsStr==null || integrationsStr == undefined){
+          done("No integrations configured.");
+        }
 
 
         var integrationsStrArray = integrationsStr.split(",");

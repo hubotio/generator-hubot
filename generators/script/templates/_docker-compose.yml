@@ -1,0 +1,19 @@
+version: '2'
+services:
+  <%= appname %>:
+    image: chatopshpe/hubot-enterprise
+    volumes:
+      - .:/integration
+    environment:
+      - HUBOT_LOG_LEVEL=debug
+      - ADAPTER=slack
+      - SLACK_APP_TOKEN=xoxb-000000000-XXXXXXXXXXXXXXXXXX
+      - HUBOT_SLACK_TOKEN=xoxb-0000000000-XXXXXXXXXXXXXXXXXXXXXX
+      - ftp_proxy=$ftp_proxy
+      - http_proxy=$http_proxy
+      - https_proxy=$https_proxy
+      - no_proxy=$no_proxy
+      - FTP_PROXY=$FTP_PROXY
+      - HTTP_PROXY=$HTTP_PROXY
+      - HTTPS_PROXY=$HTTPS_PROXY
+      - NO_PROXY=$NO_PROXY

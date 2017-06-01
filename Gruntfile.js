@@ -9,7 +9,7 @@ module.exports = function(grunt) {
       test: {
         options: {
           reporter: 'spec',
-          require: 'coffee-script'
+          require: 'coffee-script/register'
         },
         src: ['test/**/*.coffee','test/**/*.js']
       }

@@ -3,4 +3,4 @@
 # bootstrap environment
 source script/bootstrap
 
-mocha --compilers coffee:coffee-script  
+mocha --compilers coffee:coffee-script/register

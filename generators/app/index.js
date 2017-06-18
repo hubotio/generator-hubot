@@ -144,9 +144,6 @@ var HubotGenerator = yeoman.generators.Base.extend({
       'hubot-rules',
       'hubot-shipit'
     ];
-
-    this.hubotScripts = [
-    ];
   },
 
   prompting: {
@@ -250,7 +247,6 @@ var HubotGenerator = yeoman.generators.Base.extend({
       this.template('README.md', 'README.md');
 
       this.write('external-scripts.json', JSON.stringify(this.externalScripts, undefined, 2));
-      this.write('hubot-scripts.json', JSON.stringify(this.hubotScripts, undefined, 2));
 
       this.copy('gitignore', '.gitignore');
       this.template('_package.json', 'package.json');

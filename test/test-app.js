@@ -24,7 +24,6 @@ describe('hubot:app', function () {
       'Procfile',
       'README.md',
       'external-scripts.json',
-      'hubot-scripts.json',
       '.gitignore',
       'package.json',
       'scripts/example.coffee',

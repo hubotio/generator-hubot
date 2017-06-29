@@ -247,7 +247,7 @@ const HubotGenerator = yeoman.generators.Base.extend({
   },
 
   end: function () {
-    const packages = ['hubot'].concat(this.externalScripts)
+    const packages = ['hubot@next'].concat(this.externalScripts)
 
     if (this.botAdapter !== 'campfire') {
       packages.push('hubot-' + this.botAdapter)

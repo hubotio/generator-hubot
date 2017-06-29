@@ -27,7 +27,7 @@ describe('hubot:app', function () {
       'external-scripts.json',
       '.gitignore',
       'package.json',
-      'scripts/example.coffee'
+      'scripts/example.js'
     ])
   })
 })

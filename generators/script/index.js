@@ -128,10 +128,6 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
       this.copy('index.coffee', 'index.coffee');
       this.template('_package.json', 'package.json');
       this.copy('README.md', 'README.md');
-    },
-
-    projectfiles: function () {
-      this.copy('editorconfig', '.editorconfig');
     }
   },
 

@@ -252,10 +252,6 @@ var HubotGenerator = yeoman.generators.Base.extend({
       this.template('_package.json', 'package.json');
 
       this.directory('scripts', 'scripts');
-    },
-
-    projectfiles: function () {
-      this.copy('editorconfig', '.editorconfig');
     }
   },
 

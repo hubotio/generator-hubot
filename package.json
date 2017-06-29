@@ -1,13 +1,19 @@
 {
   "name": "generator-hubot",
-  "version": "0.4.0",
+  "version": "0.0.0-development",
   "publishConfig": {
     "tag": "next"
   },
   "description": "Hubot generator for Yeoman",
   "license": "MIT",
   "main": "generators/app/index.js",
-  "repository": "github/generator-hubot",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hubotio/generator-hubot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hubotio/generator-hubot/issues"
+  },
   "author": {
     "name": "Josh Nichols",
     "email": "josh@technicalpickles.com",
@@ -18,7 +24,8 @@
   },
   "scripts": {
     "pretest": "standard",
-    "test": "mocha --reporter spec"
+    "test": "mocha --reporter spec",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "files": [
     "generators"
@@ -35,6 +42,7 @@
   },
   "devDependencies": {
     "mocha": "^3.4.2",
-    "standard": "^10.0.2"
+    "standard": "^10.0.2",
+    "semantic-release": "^6.3.6"
   }
 }

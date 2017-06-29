@@ -17,11 +17,11 @@
 //   <%= scriptOwner %>
 
 module.exports = (robot) => {
-  robot.respond(/hello/, (res) => {
-    res.reply('hello!')
+  robot.respond(/hello/, (message) => {
+    message.reply('hello!')
   })
 
-  robot.hear(/orly/, (res) => {
-    res.send('yarly')
+  robot.hear(/orly/, (message) => {
+    message.send('yarly')
   })
 }

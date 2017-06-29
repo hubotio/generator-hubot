@@ -131,14 +131,8 @@ const HubotGenerator = yeoman.generators.Base.extend({
     this.externalScripts = [
       'hubot-diagnostics',
       'hubot-help',
-      'hubot-heroku-keepalive',
-      'hubot-google-images',
-      'hubot-google-translate',
-      'hubot-pugme',
-      'hubot-maps',
       'hubot-redis-brain',
-      'hubot-rules',
-      'hubot-shipit'
+      'hubot-rules'
     ]
   },
 
@@ -253,7 +247,7 @@ const HubotGenerator = yeoman.generators.Base.extend({
   },
 
   end: function () {
-    const packages = ['hubot', 'hubot-scripts'].concat(this.externalScripts)
+    const packages = ['hubot'].concat(this.externalScripts)
 
     if (this.botAdapter !== 'campfire') {
       packages.push('hubot-' + this.botAdapter)

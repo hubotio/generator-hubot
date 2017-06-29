@@ -1,10 +1,11 @@
-/*global describe, beforeEach, it*/
-'use strict';
+'use strict'
 
-var path = require('path');
-var assert = require('yeoman-generator').assert;
-var helpers = require('yeoman-generator').test;
-var os = require('os');
+/* global describe, before, it */
+
+var path = require('path')
+var assert = require('yeoman-generator').assert
+var helpers = require('yeoman-generator').test
+var os = require('os')
 
 describe('hubot:app', function () {
   before(function (done) {
@@ -14,8 +15,8 @@ describe('hubot:app', function () {
       .withPrompt({
         someOption: true
       })
-      .on('end', done);
-  });
+      .on('end', done)
+  })
 
   it('creates files', function () {
     assert.file([
@@ -26,8 +27,7 @@ describe('hubot:app', function () {
       'external-scripts.json',
       '.gitignore',
       'package.json',
-      'scripts/example.coffee',
-      '.editorconfig',
-    ]);
-  });
-});
+      'scripts/example.js'
+    ])
+  })
+})

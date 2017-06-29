@@ -1,47 +1,40 @@
 {
   "name": "<%= appname %>",
   "description": "<%= scriptDescription %>",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "author": "<%= scriptOwner %>",
   "license": "MIT",
 
-  "keywords": "<%= scriptKeywords %>",
+  "keywords": <%= scriptKeywords %>,
 
   "repository": {
     "type": "git",
-    "url": "git://github.com/hubot-scripts/<%= appname %>.git"
+    "url": "https://github.com/hubotio/<%= appname %>.git"
   },
 
   "bugs": {
-    "url": "https://github.com/hubot-scripts/<%= appname %>/issues"
+    "url": "https://github.com/hubotio/<%= appname %>/issues"
   },
 
   "dependencies": {
   },
 
   "peerDependencies": {
-    "hubot": "2.x"
+    "hubot": ">=2 <10 || 0.0.0-development"
   },
 
   "devDependencies": {
-    "hubot-test-helper": "^1.3.0",
     "chai": "^2.1.1",
-    "coffee-script": "1.6.3",
-    "grunt": "^0.4.5",
-    "grunt-cli": "^0.1.13",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-mocha-test": "~0.12.7",
-    "grunt-release": "~0.11.0",
-    "hubot": "2.x",
-    "matchdep": "~0.3.0",
+    "hubot": "^3.0.0",
+    "hubot-mock-adapter-v3": "^1.0.1",
     "mocha": "^2.1.0",
     "sinon": "^1.13.0",
     "sinon-chai": "^2.7.0"
   },
 
-  "main": "index.coffee",
+  "main": "index.js",
 
   "scripts": {
-    "test": "grunt test"
+    "test": "mocha"
   }
 }

@@ -46,9 +46,9 @@ intensive. The following shell command can be used as a stop gap until an
 easier way to do this has been implemented.
 
     grep -o 'hubot-[a-z0-9_-]\+' external-scripts.json | \
-      xargs -n1 -I {} sh -c 'sed -n "/^# Configuration/,/^#$/ s/^/{} /p" \
-          $(find node_modules/{}/ -name "*.coffee")' | \
-        awk -F '#' '{ printf "%-25s %s\n", $1, $2 }'
+      xargs -n1 -I {} sh -c 'sed -n "/^// Configuration/,/^//$/ s/^/{} /p" \
+          $(find node_modules/{}/ -name "*.js")' | \
+        awk -F '//' '{ printf "%-25s %s\n", $1, $2 }'
 
 How to set environment variables will be specific to your operating system.
 Rather than recreate the various methods and best practices in achieving this,
@@ -56,7 +56,7 @@ it's suggested that you search for a dedicated guide focused on your OS.
 
 ### Scripting
 
-An example script is included at `scripts/example.coffee`, so check it out to
+An example script is included at `scripts/example.js`, so check it out to
 get started, along with the [Scripting Guide][scripting-docs].
 
 For many common tasks, there's a good chance someone has already one to do just
@@ -107,19 +107,6 @@ the `hubot-fun` plugin, but all four of those in `hubot-auto-deploy`.
 to including all scripts.**
 
 [npmjs]: https://www.npmjs.com
-
-### hubot-scripts
-
-Before hubot plugin packages were adopted, most plugins were held in the
-[hubot-scripts][hubot-scripts] package. Some of these plugins have yet to be
-migrated to their own packages. They can still be used but the setup is a bit
-different.
-
-To enable scripts from the hubot-scripts package, add the script name with
-extension as a double quoted string to the `hubot-scripts.json` file in this
-repo.
-
-[hubot-scripts]: https://github.com/github/hubot-scripts
 
 ##  Persistence
 

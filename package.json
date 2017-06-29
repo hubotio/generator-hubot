@@ -1,6 +1,9 @@
 {
   "name": "generator-hubot",
   "version": "0.4.0",
+  "publishConfig": {
+    "tag": "next"
+  },
   "description": "Hubot generator for Yeoman",
   "license": "MIT",
   "main": "generators/app/index.js",
@@ -11,10 +14,11 @@
     "url": "https://github.com/technicalpickles"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": "> 4.0.0"
   },
   "scripts": {
-    "test": "mocha --reporter spec --require coffee-script"
+    "pretest": "standard",
+    "test": "mocha --reporter spec"
   },
   "files": [
     "generators"
@@ -30,7 +34,7 @@
     "npm-name": "^1.0.1"
   },
   "devDependencies": {
-    "coffee-script": "^1.6.3",
-    "mocha": "*"
+    "mocha": "^3.4.2",
+    "standard": "^10.0.2"
   }
 }

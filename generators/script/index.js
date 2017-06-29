@@ -97,7 +97,7 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
         name: 'scriptKeywords',
         message: 'Keywords',
         default: 'hubot, hubot-scripts'
-      }];
+      }]
 
       this.prompt(prompts, function (props) {
         this.scriptName = props.scriptName;
@@ -112,22 +112,21 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
 
   writing: {
     app: function () {
-      this.mkdir('script');
-      this.copy('script/bootstrap', 'script/bootstrap');
-      this.copy('script/test', 'script/test');
+      this.mkdir('script')
+      this.copy('script/bootstrap', 'script/bootstrap')
+      this.copy('script/test', 'script/test')
 
-      this.mkdir('src');
-      this.template('src/template.coffee', 'src/' + this.scriptName + '.coffee');
+      this.mkdir('src')
+      this.template('src/template.js', 'src/' + this.scriptName + '.js')
 
-      this.mkdir('test');
-      this.template('test/template-test.coffee', 'test/' + this.scriptName + '-test.coffee');
+      this.mkdir('test')
+      this.template('test/template-test.js', 'test/' + this.scriptName + '-test.js')
 
-      this.copy('Gruntfile.js', 'Gruntfile.js');
-      this.copy('gitignore', '.gitignore');
-      this.copy('.travis.yml', '.travis.yml');
-      this.copy('index.coffee', 'index.coffee');
-      this.template('_package.json', 'package.json');
-      this.copy('README.md', 'README.md');
+      this.copy('gitignore', '.gitignore')
+      this.copy('.travis.yml', '.travis.yml')
+      this.copy('index.js', 'index.js')
+      this.template('_package.json', 'package.json')
+      this.copy('README.md', 'README.md')
     }
   },
 

@@ -15,7 +15,7 @@
   },
   "scripts": {
     "pretest": "standard",
-    "test": "mocha --reporter spec --require coffee-script"
+    "test": "mocha --reporter spec"
   },
   "files": [
     "generators"

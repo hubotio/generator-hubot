@@ -2,7 +2,7 @@
 
 <%= scriptDescription %>
 
-See [`src/<%= scriptName %>.coffee`](src/<%= scriptName %>.coffee) for full documentation.
+See [`src/<%= scriptName %>.js`](src/<%= scriptName %>.js) for full documentation.
 
 ## Installation
 
@@ -21,8 +21,8 @@ Then add **<%= appname %>** to your `external-scripts.json`:
 ## Sample Interaction
 
 ```
-user1>> hubot hello
-hubot>> hello!
+hubot> hubot hello
+hubot> hello!
 ```
 
 ## NPM Module

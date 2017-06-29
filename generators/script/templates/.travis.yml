@@ -1,14 +1,11 @@
 language: node_js
-node_js:
-  - "node"
-  - "6"
-  - "5"
-  - "4"
-  - "0.12"
-  - "iojs"
 sudo: false
+notifications:
+  email: false
+node_js:
+  - "8" # stable
+  - "6" # LTS
+  - "4" # maintenance
 cache:
   directories:
     - node_modules
-notifications:
-  email: false

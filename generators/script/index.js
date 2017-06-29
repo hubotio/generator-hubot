@@ -1,89 +1,83 @@
-'use strict';
-var util = require('util');
-var path = require('path');
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var npmName = require('npm-name');
+'use strict'
+const yeoman = require('yeoman-generator')
+const chalk = require('chalk')
 
+function hubotStartSay () {
+  return '                     _____________________________  ' + '\n' +
+          '                    /                             \\ ' + '\n' +
+          ' ' + chalk.cyan('  //\\') + '              |      Extracting input for    |' + '\n' +
+          ' ' + chalk.cyan(' ////\\  ') + '  ' + chalk.yellow('_____') + '    |   script generation process  |' + '\n' +
+          ' ' + chalk.cyan('//////\\  ') + chalk.yellow('/') + chalk.cyan('_____') + chalk.yellow('\\') + '   \\                             / ' + '\n' +
+          ' ' + chalk.cyan('=======') + chalk.yellow(' |') + chalk.cyan('[^_/\\_]') + chalk.yellow('|') + '   /----------------------------  ' + '\n' +
+          '  ' + chalk.yellow('|   | _|___') + '@@' + chalk.yellow('__|__') + '                                ' + '\n' +
+          '  ' + chalk.yellow('+===+/  ///     ') + chalk.cyan('\\_\\') + '                               ' + '\n' +
+          '   ' + chalk.cyan('| |_') + chalk.yellow('\\ /// HUBOT/') + chalk.cyan('\\\\') + '                             ' + '\n' +
+          '   ' + chalk.cyan('|___/') + chalk.yellow('\\//      /') + chalk.cyan('  \\\\') + '                            ' + '\n' +
+          '         ' + chalk.yellow('\\      /   +---+') + '                            ' + '\n' +
+          '          ' + chalk.yellow('\\____/    |   |') + '                            ' + '\n' +
+          '           ' + chalk.cyan('| //|') + '    ' + chalk.yellow('+===+') + '                            ' + '\n' +
+          '            ' + chalk.cyan('\\//') + '      |xx|                            ' +
+          '\n'
+}
 
-var hubotStartSay = function() {
-  return  '                     _____________________________  ' + "\n" +
-          '                    /                             \\ ' + "\n" +
-          ' '+chalk.cyan('  //\\')+'              |      Extracting input for    |' + "\n" +
-          ' '+chalk.cyan(' ////\\  ')+'  '+chalk.yellow('_____')+'    |   script generation process  |' + "\n" +
-          ' '+chalk.cyan('//////\\  ')+chalk.yellow('/')+chalk.cyan('_____')+chalk.yellow('\\')+'   \\                             / ' + "\n" +
-          ' '+chalk.cyan('=======') + chalk.yellow(' |')+chalk.cyan('[^_/\\_]')+chalk.yellow('|')+'   /----------------------------  ' + "\n" +
-          '  '+chalk.yellow('|   | _|___')+'@@'+chalk.yellow('__|__')+'                                ' + "\n" +
-          '  '+chalk.yellow('+===+/  ///     ')+chalk.cyan('\\_\\')+'                               ' + "\n" +
-          '   '+chalk.cyan('| |_')+chalk.yellow('\\ /// HUBOT/')+chalk.cyan('\\\\')+'                             ' + "\n" +
-          '   '+chalk.cyan('|___/')+chalk.yellow('\\//      /')+chalk.cyan('  \\\\')+'                            ' + "\n" +
-          '         '+chalk.yellow('\\      /   +---+')+'                            ' + "\n" +
-          '          '+chalk.yellow('\\____/    |   |')+'                            ' + "\n" +
-          '           '+chalk.cyan('| //|')+'    '+chalk.yellow('+===+')+'                            ' + "\n" +
-          '            '+chalk.cyan('\\//')+'      |xx|                            ' +
-          "\n";
+function hubotEndSay () {
+  return '                     _____________________________  ' + '\n' +
+          ' _____              /                             \\ ' + '\n' +
+          ' \\    \\             |   Script generation process   |' + '\n' +
+          ' |    |    ' + chalk.yellow('_____') + '    |          complete...         |' + '\n' +
+          ' |__' + chalk.cyan('\\\\') + '|   ' + chalk.yellow('/') + chalk.cyan('_____') + chalk.yellow('\\') + '   \\     Good luck with that.    / ' + '\n' +
+          '   ' + chalk.cyan('|//') + chalk.yellow('+  |') + chalk.cyan('[^_/\\_]') + chalk.yellow('|') + '   /----------------------------  ' + '\n' +
+          '  ' + chalk.yellow('|   | _|___') + '@@' + chalk.yellow('__|__') + '                                ' + '\n' +
+          '  ' + chalk.yellow('+===+/  ///     ') + chalk.cyan('\\_\\') + '                               ' + '\n' +
+          '   ' + chalk.cyan('| |_') + chalk.yellow('\\ /// HUBOT/') + chalk.cyan('\\\\') + '                             ' + '\n' +
+          '   ' + chalk.cyan('|___/') + chalk.yellow('\\//      /') + chalk.cyan('  \\\\') + '                            ' + '\n' +
+          '         ' + chalk.yellow('\\      /   +---+') + '                            ' + '\n' +
+          '          ' + chalk.yellow('\\____/    |   |') + '                            ' + '\n' +
+          '           ' + chalk.cyan('| //|') + '    ' + chalk.yellow('+===+') + '                            ' + '\n' +
+          '            ' + chalk.cyan('\\//') + '      |xx|                            ' +
+          '\n'
+}
 
-};
-
-var hubotEndSay = function() {
-  return  '                     _____________________________  ' + "\n" +
-          ' _____              /                             \\ ' + "\n" +
-          ' \\    \\             |   Script generation process   |' + "\n" +
-          ' |    |    '+chalk.yellow('_____')+'    |          complete...         |' + "\n" +
-          ' |__'+chalk.cyan('\\\\')+'|   '+chalk.yellow('/')+chalk.cyan('_____')+chalk.yellow('\\')+'   \\     Good luck with that.    / ' + "\n" +
-          '   '+chalk.cyan('|//') + chalk.yellow('+  |')+chalk.cyan('[^_/\\_]')+chalk.yellow('|')+'   /----------------------------  ' + "\n" +
-          '  '+chalk.yellow('|   | _|___')+'@@'+chalk.yellow('__|__')+'                                ' + "\n" +
-          '  '+chalk.yellow('+===+/  ///     ')+chalk.cyan('\\_\\')+'                               ' + "\n" +
-          '   '+chalk.cyan('| |_')+chalk.yellow('\\ /// HUBOT/')+chalk.cyan('\\\\')+'                             ' + "\n" +
-          '   '+chalk.cyan('|___/')+chalk.yellow('\\//      /')+chalk.cyan('  \\\\')+'                            ' + "\n" +
-          '         '+chalk.yellow('\\      /   +---+')+'                            ' + "\n" +
-          '          '+chalk.yellow('\\____/    |   |')+'                            ' + "\n" +
-          '           '+chalk.cyan('| //|')+'    '+chalk.yellow('+===+')+'                            ' + "\n" +
-          '            '+chalk.cyan('\\//')+'      |xx|                            ' +
-          "\n";
-};
-
-var extractScriptName = function (_, appname) {
-  var slugged = _.slugify(appname),
-    match = slugged.match(/^hubot-(.+)/);
+function extractScriptName (_, appname) {
+  const slugged = _.slugify(appname)
+  const match = slugged.match(/^hubot-(.+)/)
   if (match && match.length === 2) {
-    return match[1].toLowerCase();
+    return match[1].toLowerCase()
   }
-  return slugged;
-};
+  return slugged
+}
 
-var HubotScriptGenerator = yeoman.generators.Base.extend({
+const HubotScriptGenerator = yeoman.generators.Base.extend({
   initializing: function () {
-    this.pkg = require('../../package.json');
-
+    this.pkg = require('../../package.json')
   },
 
   prompting: {
     askFor: function () {
-      var done = this.async();
-      var userName = this.user.git.name();
-      var userEmail = this.user.git.email();
+      const done = this.async()
+      const userName = this.user.git.name()
+      const userEmail = this.user.git.email()
 
-      var prompts = [{
+      const prompts = [{
         name: 'scriptOwner',
         message: 'Owner',
-        default: userName+' <'+userEmail+'>'
-      }];
+        default: userName + ' <' + userEmail + '>'
+      }]
 
-      this.log(hubotStartSay());
+      this.log(hubotStartSay())
 
       this.prompt(prompts, function (props) {
-        this.scriptOwner = props.scriptOwner;
+        this.scriptOwner = props.scriptOwner
 
-        done();
-      }.bind(this));
+        done()
+      }.bind(this))
     },
 
-    askForScriptNameAndDescription: function() {
-      var done = this.async();
-      var scriptName = extractScriptName(this._, this.appname);
+    askForScriptNameAndDescription: function () {
+      const done = this.async()
+      const scriptName = extractScriptName(this._, this.appname)
 
-      var prompts = [{
+      const prompts = [{
         name: 'scriptName',
         message: 'Script name',
         default: scriptName
@@ -100,14 +94,14 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
       }]
 
       this.prompt(prompts, function (props) {
-        this.scriptName = props.scriptName;
-        this.scriptDescription = props.scriptDescription;
-        this.scriptKeywords = props.scriptKeywords;
-        this.appname = 'hubot-' + this.scriptName;
+        this.scriptName = props.scriptName
+        this.scriptDescription = props.scriptDescription
+        this.scriptKeywords = props.scriptKeywords.split(/\s*,\s*/)
+        this.appname = 'hubot-' + this.scriptName
 
-        done();
-      }.bind(this));
-    },
+        done()
+      }.bind(this))
+    }
   },
 
   writing: {
@@ -131,11 +125,10 @@ var HubotScriptGenerator = yeoman.generators.Base.extend({
   },
 
   end: function () {
-    this.npmInstall();
+    this.npmInstall()
 
-    this.log(hubotEndSay());
-
+    this.log(hubotEndSay())
   }
-});
+})
 
-module.exports = HubotScriptGenerator;
+module.exports = HubotScriptGenerator

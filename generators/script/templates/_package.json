@@ -32,7 +32,7 @@
     "sinon-chai": "^2.7.0"
   },
 
-  "main": "index.coffee",
+  "main": "index.js",
 
   "scripts": {
     "test": "mocha"

@@ -96,7 +96,7 @@ const HubotScriptGenerator = yeoman.generators.Base.extend({
       this.prompt(prompts, function (props) {
         this.scriptName = props.scriptName
         this.scriptDescription = props.scriptDescription
-        this.scriptKeywords = props.scriptKeywords.split(/\s*,\s*/)
+        this.scriptKeywords = JSON.stringify(props.scriptKeywords.split(/\s*,\s*/))
         this.appname = 'hubot-' + this.scriptName
 
         done()

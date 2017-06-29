@@ -5,7 +5,7 @@
   "author": "<%= scriptOwner %>",
   "license": "MIT",
 
-  "keywords": "<%= scriptKeywords %>",
+  "keywords": <%= scriptKeywords %>,
 
   "repository": {
     "type": "git",

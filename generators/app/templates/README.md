@@ -108,19 +108,6 @@ to including all scripts.**
 
 [npmjs]: https://www.npmjs.com
 
-### hubot-scripts
-
-Before hubot plugin packages were adopted, most plugins were held in the
-[hubot-scripts][hubot-scripts] package. Some of these plugins have yet to be
-migrated to their own packages. They can still be used but the setup is a bit
-different.
-
-To enable scripts from the hubot-scripts package, add the script name with
-extension as a double quoted string to the `hubot-scripts.json` file in this
-repo.
-
-[hubot-scripts]: https://github.com/github/hubot-scripts
-
 ##  Persistence
 
 If you are going to use the `hubot-redis-brain` package (strongly suggested),

@@ -7,10 +7,9 @@
 
   "description": "<%= botDescription %>",
 
-  "dependencies": {
-  },
+  "dependencies": {},
 
   "engines": {
-    "node": "0.10.x"
+    "node": ">4"
   }
 }

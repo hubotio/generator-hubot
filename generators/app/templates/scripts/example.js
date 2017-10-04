@@ -33,7 +33,7 @@ module.exports = (robot) => {
   //
   // const lulz = ['lol', 'rofl', 'lmao']
   //
-  // robot.respond(/lulz/i, (res) => {
+  // robot.respond(`/${lulz.join('|')}/i`, (res) => {
   //   res.send(res.random(lulz))
   // })
   //

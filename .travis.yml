@@ -3,13 +3,18 @@ sudo: false
 notifications:
   email: false
 node_js:
-  - "8" # stable
-  - "6" # LTS
-  - "4" # maintenance
+  - "10"
+  - "8"
+  - "6"
+before_install:
+  - npm install -g npm@latest
 before_script:
   - npm prune
-after_success:
-  - npm run semantic-release
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
+deploy:
+  provider: script
+  skip_cleanup: true
+  script:
+    - npx travis-deploy-once "npx semantic-release"

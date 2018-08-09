@@ -6,10 +6,15 @@ node_js:
   - "10" # stable
   - "8" # LTS
   - "6" # maintenance
+before_install:
+  - npm install -g npm@latest
 before_script:
   - npm prune
-after_success:
-  - npm run semantic-release
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
+deploy:
+  provider: script
+  skip_cleanup: true
+  script:
+    - npx travis-deploy-once "npx semantic-release"

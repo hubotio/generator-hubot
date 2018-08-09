@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "mocha": "^3.4.2",
-    "standard": "^10.0.2",
-    "semantic-release": "^6.3.6"
+    "semantic-release": "^15.9.6",
+    "standard": "^11.0.1"
   }
 }

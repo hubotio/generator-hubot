@@ -33,13 +33,12 @@
     "hubot-script"
   ],
   "dependencies": {
-    "yeoman-generator": "^0.17.0",
     "chalk": "^0.5.0",
-    "npm-name": "^1.0.1"
+    "npm-name": "^1.0.1",
+    "yeoman-generator": "^0.17.0"
   },
   "devDependencies": {
     "mocha": "^3.4.2",
-    "semantic-release": "^15.9.6",
     "standard": "^11.0.1"
   }
 }

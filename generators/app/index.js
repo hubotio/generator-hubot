@@ -139,7 +139,7 @@ class HubotGenerator extends Generator {
         type: 'input',
         name: 'botName',
         message: 'Bot name',
-        default: 'hubot'
+        default: 'mybot'
       },
       {
         type: 'input',

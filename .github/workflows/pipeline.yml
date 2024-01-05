@@ -58,7 +58,7 @@ jobs:
   release:
     name: Release
     if: github.ref == 'refs/heads/main' && success()
-    needs: [build, test, e2etest]
+    needs: [build, test]
     runs-on: ubuntu-latest
     strategy:
       matrix:

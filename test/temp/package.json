@@ -1,14 +1,13 @@
 {
-  "name": "<%= botName %>",
+  "name": "hubot",
   "version": "1.0.0",
   "private": true,
 
-  "author": "<%= botOwner %>",
+  "author": "temp",
 
-  "description": "<%= botDescription %>",
+  "description": "A simple helpful robot for your Company",
 
   "dependencies": {
-    <% if (botAdapter) { %>"<%= botAdapter %>": "*",<% } %>
     "hubot": "^11.0.0",
     "hubot-help": "^2.0.0",
     "hubot-redis-brain": "^3.0.0",
@@ -16,7 +15,7 @@
     "hubot-diagnostics": "^2.0.0"
   },
   "scripts": {
-    "start": "hubot<% if (botAdapter !== 'shell') { %> -a <%= botAdapter %><% } %>",
+    "start": "hubot",
     "start:redis": "docker run -d --name redis-hubot -p 6379:6379 -p 8001:8001 -v redis-hubot:/data redis/redis-stack:latest redis-server --dir /data/redis/ --appendonly yes --protected-mode no"
   },
   "engines": {

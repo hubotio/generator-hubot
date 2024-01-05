@@ -17,12 +17,12 @@
     "url": "https://github.com/technicalpickles"
   },
   "engines": {
-    "node": "> 4.0.0"
+    "node": ">= 18.0.0"
   },
+  "type": "module",
   "scripts": {
     "pretest": "standard",
-    "test": "mocha --reporter spec",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "test": "node --test"
   },
   "files": [
     "generators"
@@ -33,12 +33,19 @@
     "hubot-script"
   ],
   "dependencies": {
-    "chalk": "^0.5.0",
-    "npm-name": "^1.0.1",
-    "yeoman-generator": "^0.17.0"
+    "chalk": "^5.3.0",
+    "yeoman-generator": "^7.1.1"
   },
   "devDependencies": {
-    "mocha": "^3.4.2",
-    "standard": "^11.0.1"
+    "standard": "^17.1.0",
+    "yeoman-assert": "^3.1.1",
+    "yeoman-test": "^8.2.0"
+  },
+  "release": {
+    "branches": [
+      "main",
+      "next"
+    ],
+    "dryRun": false
   }
 }

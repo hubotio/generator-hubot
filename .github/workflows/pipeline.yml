@@ -63,7 +63,7 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 21
+          - 20.8.1
     steps:
       - name: Checkout
         uses: actions/checkout@v3

@@ -8,6 +8,7 @@
   "description": "A simple helpful robot for your Company",
 
   "dependencies": {
+    
     "hubot": "^11.0.0",
     "hubot-help": "^2.0.0",
     "hubot-redis-brain": "^3.0.0",

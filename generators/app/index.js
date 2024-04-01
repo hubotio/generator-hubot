@@ -128,33 +128,41 @@ class HubotGenerator extends Generator {
 
   async prompting () {
     const botOwner = await this.determineDefaultName()
-    const prompts = [
-      {
-        type: 'input',
-        name: 'botOwner',
-        message: 'My Owner',
-        default: botOwner
-      },
-      {
-        type: 'input',
-        name: 'botName',
-        message: 'Bot name',
-        default: 'mybot'
-      },
-      {
-        type: 'input',
-        name: 'botDescription',
-        message: 'Description',
-        default: 'A simple helpful robot for your Company'
-      },
-      {
-        type: 'input',
-        name: 'botAdapter',
-        message: 'Bot adapter',
-        default: 'shell'
+    if (this.options.defaults) {
+      this.props = {
+        botOwner: this.options.owner,
+        botName: this.options.name,
+        botDescription: this.options.description,
+        botAdapter: this.options.adapter
       }
-    ]
-    this.props = await this.prompt(prompts)
+    } else {
+      this.props = await this.prompt([
+        {
+          type: 'input',
+          name: 'botOwner',
+          message: 'My Owner',
+          default: botOwner
+        },
+        {
+          type: 'input',
+          name: 'botName',
+          message: 'Bot name',
+          default: 'mybot'
+        },
+        {
+          type: 'input',
+          name: 'botDescription',
+          message: 'Description',
+          default: 'A simple helpful robot for your Company'
+        },
+        {
+          type: 'input',
+          name: 'botAdapter',
+          message: 'Bot adapter',
+          default: 'shell'
+        }
+      ])
+    }
     return this.props
   }
 

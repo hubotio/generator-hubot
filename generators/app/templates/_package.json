@@ -8,7 +8,7 @@
   "description": "<%= botDescription %>",
 
   "dependencies": {
-    <% if (botAdapter) { %>"<%= botAdapter %>": "*",<% } %>
+    <% if (botAdapter && botAdapter !== 'shell') { %>"<%= botAdapter %>": "*",<% } %>
     "hubot": "^11.0.0",
     "hubot-help": "^2.0.0",
     "hubot-redis-brain": "^3.0.0",

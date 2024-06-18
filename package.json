@@ -32,20 +32,20 @@
     "hubot",
     "hubot-script"
   ],
-  "dependencies": {
-    "chalk": "^5.3.0",
-    "yeoman-generator": "^7.1.1"
-  },
-  "devDependencies": {
-    "standard": "^17.1.0",
-    "yeoman-assert": "^3.1.1",
-    "yeoman-test": "^8.2.0"
-  },
   "release": {
     "branches": [
       "main",
       "next"
     ],
     "dryRun": false
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "yeoman-generator": "^7.3.1"
+  },
+  "devDependencies": {
+    "standard": "^17.1.0",
+    "yeoman-assert": "^3.1.1",
+    "yeoman-test": "^8.3.0"
   }
 }

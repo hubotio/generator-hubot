@@ -170,11 +170,11 @@ class HubotGenerator extends Generator {
     this.log(hubotStartSay())
     this.fs.copyTpl(this.templatePath('bin/hubot.cmd'), this.destinationPath('bin/hubot.cmd'), this.props)
     this.fs.copyTpl(this.templatePath('bin/hubot'), this.destinationPath('bin/hubot'), this.props)
-    this.copyTemplate('scripts/', 'scripts/', null, this.props)
+    this.copyTemplate('scripts/', 'scripts/', undefined, this.props)
     this.fs.copyTpl(this.templatePath('Procfile'), this.destinationPath('Procfile'), this.props)
     this.fs.copyTpl(this.templatePath('README.md'), this.destinationPath('README.md'), this.props)
     this.writeDestinationJSON('external-scripts.json', this.externalScripts)
-    this.copyTemplate('gitignore', '.gitignore', null, this.props)
+    this.copyTemplate('gitignore', '.gitignore', undefined, this.props)
     this.fs.copyTpl(this.templatePath('_package.json'), this.destinationPath('package.json'), this.props)
   }
 

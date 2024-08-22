@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "chalk": "^5.3.0",
-    "yeoman-generator": "^7.3.1"
+    "yeoman-generator": "^7.3.2"
   },
   "devDependencies": {
     "standard": "^17.1.0",

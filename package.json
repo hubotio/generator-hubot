@@ -40,12 +40,14 @@
     "dryRun": false
   },
   "dependencies": {
-    "chalk": "^5.3.0",
-    "yeoman-generator": "^7.3.2"
+    "chalk": "^6.0.0",
+    "yeoman-generator": "^8.2.2"
   },
   "devDependencies": {
-    "standard": "^17.1.0",
+    "@yeoman/adapter": "^4.0.2",
+    "standard": "^17.1.2",
     "yeoman-assert": "^3.1.1",
-    "yeoman-test": "^8.3.0"
+    "yeoman-environment": "^6.1.0",
+    "yeoman-test": "^11.6.0"
   }
 }
